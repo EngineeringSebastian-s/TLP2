@@ -1,5 +1,8 @@
 package com.example.demo.Controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,7 +16,7 @@ import org.springframework.ui.Model;;
 public class indexController {
     @GetMapping("/index")
     public String index(Model model){
-        model.addAttribute("Titulo", "Clase taller 2");
+        model.addAttribute("Titulo", "Inicio");
         return "index";
     }
 
@@ -21,10 +24,32 @@ public class indexController {
     public String profile(Model model){
         Usuario usuario = new Usuario("Pepito","Perez","pp@mail.com");
 
-        model.addAttribute("Titulo", "Clase taller 2");
+        model.addAttribute("Titulo", "Perfil");
         model.addAttribute("Usuario", usuario.getNombre().concat(usuario.getApellido()));
         model.addAttribute("Correo", usuario.getEmail());
         return "perfil";
+    }
+
+    @GetMapping("/list")
+    public String list(Model model){
+        List<Usuario> usuarios = new ArrayList<>();
+        model.addAttribute("Titulo", "Usuarios");
+
+        usuarios.add(new Usuario("Pepito","Perez","Pepito.perez@gmail.com"));
+        usuarios.add(new Usuario("Sarita","Perez","Sarita.perez@gmail.com"));
+        usuarios.add(new Usuario("Samuel","Perez","Samuel.perez@gmail.com"));
+        usuarios.add(new Usuario("Sultanito","Perez","Sultanito.perez@gmail.com"));
+
+        //Table format
+        String html="";
+        int count=1;
+        for(Usuario usuario :usuarios){
+            html+="<tr><td>"+count+"</td><td>"+usuario.getNombre()+"</td><td>"+usuario.getApellido()+"</td><td>"+usuario.getEmail()+"</td></tr>";
+            count++;
+        }
+        model.addAttribute("Usuarios", html);
+        
+        return "list";
     }
 
 }

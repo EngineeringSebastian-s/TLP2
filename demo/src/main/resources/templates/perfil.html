@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${Titulo}">Titulo</title>
+    <link href="/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1 th:text="${Usuario}">Usuario</h1>
-    <h1 th:text="${Correo}">Correo</h1>
+    <div class="action">
+        <div class="profile">
+            <img src="" alt="" class="">
+        </div>
+        <div class="menu">
+            <h3 th:text="${Usuario}">Usuario</h3>
+            <span th:text="${Correo}">Correo</span>
+        </div>
+    </div>
 </body>
 </html>

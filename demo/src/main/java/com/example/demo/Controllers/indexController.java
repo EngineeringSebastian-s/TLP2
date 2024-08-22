@@ -40,14 +40,7 @@ public class indexController {
         usuarios.add(new Usuario("Samuel","Perez","Samuel.perez@gmail.com"));
         usuarios.add(new Usuario("Sultanito","Perez","Sultanito.perez@gmail.com"));
 
-        //Table format
-        String html="";
-        int count=1;
-        for(Usuario usuario :usuarios){
-            html+="<tr><td>"+count+"</td><td>"+usuario.getNombre()+"</td><td>"+usuario.getApellido()+"</td><td>"+usuario.getEmail()+"</td></tr>";
-            count++;
-        }
-        model.addAttribute("Usuarios", html);
+        model.addAttribute("Usuarios", usuarios);
         
         return "list";
     }

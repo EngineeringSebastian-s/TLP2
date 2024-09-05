@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}"></title>
+</head>
+
+<body>
+    <h1>Recibir parametros de la Ruta(@PathVariable)-</h1>
+    <p>Saludos</p>
+    <ul>
+        <li>
+            <a th:href="@{/variables/string/}+'Que tal Luis'">Saludos Luis</a>
+        </li>
+        <li>
+            <a th:href="@{/variables/string/}+'Que tal Pepito'">Saludos Pepito</a>
+        </li>
+        <li>
+            <a th:href="@{/variables/string/}+'Que tal Juan'">Saludos Juan</a>
+        </li>
+    </ul>
+    </li>
+    <p>Saludos Repetidos</p>
+    <ul>
+        <li>
+            <a th:href="@{/variables/string/}+'Que tal Luis'+'/'+3">Saludos Luis</a>
+        </li>
+        <li>
+            <a th:href="@{/variables/string/}+'Que tal Pepito'+'/'+5">Saludos Pepito</a>
+        </li>
+        <li>
+            <a th:href="@{/variables/string/}+'Que tal Juan'+'/'+12">Saludos Juan</a>
+        </li>
+    </ul>
+
+</body>
+
+</html>

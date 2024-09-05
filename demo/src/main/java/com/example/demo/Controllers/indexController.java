@@ -8,13 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.Models.entity.Usuario;
 
-import org.springframework.ui.Model;;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
+@RequestMapping("/app")
 
 public class indexController {
-    @GetMapping("/index")
+    @GetMapping({"/index","/"})
     public String index(Model model){
         model.addAttribute("Titulo", "Inicio");
         return "index";

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequestMapping("/variables")
 
-public class EjemploRutaVariable {
+public class EjemploRutaVariableController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("titulo", "Mandar atributos");

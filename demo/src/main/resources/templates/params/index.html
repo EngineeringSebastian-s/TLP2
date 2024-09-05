@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}"></title>
+</head>
+
+<body>
+    <h1>Recibir parametros de la Ruta(@RequestParam)-</h1>
+    <p>Saludos</p>
+    <ul>
+        <li>
+            <a th:href="@{/params/string(texto='Hola Luis')}">Saludos Luis</a>
+        </li>
+        <li>
+            <a th:href="@{/params/string(texto='Hola Pepito')}">Saludos Pepito</a>
+        </li>
+        <li>
+            <a th:href="@{/params/string(texto='Hola Juan')}">Saludos Juan</a>
+        </li>
+    </ul>
+    <p>Saludos Repetidos</p>
+    <ul>
+        <li>
+            <a th:href="@{/params/mix-params(saludo='Hola Luis',numero=3)}">Saludos Luis</a>
+        </li>
+        <li>
+            <a th:href="@{/params/mix-params(saludo='Hola Pepito',numero=3)}">Saludos Pepito</a>
+        </li>
+        <li>
+            <a th:href="@{/params/mix-params(saludo='Hola Juan',numero=3)}">Saludos Juan</a>
+        </li>
+    </ul>
+
+</body>
+
+</html>

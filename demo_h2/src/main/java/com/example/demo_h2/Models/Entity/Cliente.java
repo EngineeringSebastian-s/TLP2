@@ -3,6 +3,12 @@ package com.example.demo_h2.Models.Entity;
 import java.io.Serializable;
 import java.util.Date;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,14 +21,31 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long Id;
+
+    @NotEmpty
+    @Size(min =4, max = 15)
     @Column(name = "name")
     private String Name;
+
+    @NotEmpty
+    @Size(min =4, max = 30)
     @Column(name = "lastname")
     private String Lastname;
+
+    @NotEmpty
+    @Size(min =14, max = 60)
     @Column(name = "email")
     private String Email;
+
+    @NotEmpty
     @Column(name = "create_at")
+    @Temporal(TemporalType.DATE)
     private Date CreateAt;
+
+    @PrePersist
+    public void perPersist(){
+        CreateAt = new Date();
+    }
 
     public Cliente(Long id, String name, String lastname, String email, Date createAt) {
         Id = id;
@@ -30,6 +53,10 @@ public class Cliente implements Serializable {
         Lastname = lastname;
         Email = email;
         CreateAt = createAt;
+    }
+
+    public Cliente(){
+
     }
 
     public Long getId() {

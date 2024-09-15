@@ -1,0 +1,2 @@
+INSERT INTO CLIENTE(name,lastname,email,create_at) VALUES('Juan','Perez','juan.perez@elpoli.edu.co','2024-09-05');
+INSERT INTO CLIENTE(name,lastname,email,create_at) VALUES('Pepito','Calle','pepito.calle@elpoli.edu.co','2024-08-05');

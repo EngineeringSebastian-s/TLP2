@@ -2,18 +2,13 @@ package practica.com.taller1.Models.Entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
 @Entity
+@Table(name="clientes")
 public class Cliente implements Serializable {
 
     @Id

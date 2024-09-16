@@ -19,6 +19,11 @@ public class ClienteController {
     @Autowired
     private IClienteDao clienteDao;
 
+    @GetMapping("/")
+    public String index(Model model) {
+        return "index";
+    }
+
     @GetMapping("/listar")
     public String Listar(Model model) {
         model.addAttribute("titulo", "Listado de Clientes");

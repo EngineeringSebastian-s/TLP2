@@ -39,10 +39,11 @@
             </tbody>
 
         </table>
-        <a class="btn btn-success btn-xs" th:href="@{Clientes/Create}">Crear</a>
+        <a class="btn btn-success btn-xs" th:href="@{Clientes/Create/}">Crear</a>
         <a class="btn btn-danger btn-xs"  th:onclick="'confirmDeleteAll()'">Vaciar</a>
     </div>
     <p id="confirmDel" style="display: none" th:text="${confirmDel}"> </p>
+    <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"> </p>
     <!-- Incluir el Footer -->
     <div th:replace="fragments/footer :: footer"></div>
     <script src="/js/jquery-3.7.1.slim.min.js"></script>

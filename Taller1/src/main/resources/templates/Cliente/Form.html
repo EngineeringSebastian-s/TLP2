@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title th:text="${titulo}">Title</title>
+    <title th:text="${Title}">Title</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -13,74 +13,71 @@
     <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container-fluid text-light p-5" style="background-color: #0D0D0D;">
 
-        <h1 class="text-primary border border-success border-bottom  border-0" th:text="${titulo}"></h1>
-        <!-- 2 agregar lista de errores -->
-        <!-- <div th:object="${cliente}">
-            <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-                <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-            </ul>
-        </div> -->
+        <h1 class="text-primary border border-success border-bottom  border-0" th:text="${Title}"></h1>
 
-        <form method="post" th:action="@{/Clientes/Edit/{id}(id=${cliente.id})}" th:object="${cliente}">
-            <!-- <table>
+        <form method="post" th:action="@{/Clientes/{action}/{id}(id=${Client.id},action=${Action})}" th:object="${Client}">
 
-                <tr>
-                    <td>Nombre</td>
-                    <td><input type="text" th:field="*{nombre}" class="form-control"/></td>
-                </tr>
-                <tr>
-                    <td>Apellido</td>
-                    <td><input type="text" th:field="*{apellido}" class="form-control" /></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="text" th:field="*{email}" class="form-control" /></td>
-                </tr>
-                <tr>
-
-                    <td><input type="submit" value="Crear Cliente" class="btn btn-primary" /></td>
-                </tr>
-            </table>
-            <input type="hidden" th:field="*{id}"> -->
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Nombre</label>
+            <div class="form-group row mb-3">
+                <label class="col-sm-1 col-form-label">Nombre</label>
                 <div class="col-sm-6">
-                    <input class="form-control" th:errorclass="'form-control alert alert-danger'" th:field="*{name}"
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{name}"
                            type="text"/>
                     <small class="form-text text-danger" th:errors="*{name}"
                            th:if="${#fields.hasErrors('name')}"></small>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row mb-3">
                 <label class="col-sm-1 col-form-label">Apellido</label>
                 <div class="col-sm-6">
-                    <input class="form-control" th:errorclass="'form-control alert alert-danger'" th:field="*{lastname}"
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{lastname}"
                            type="text"/>
                     <small class="form-text text-danger" th:errors="*{lastname}"
                            th:if="${#fields.hasErrors('lastname')}"></small>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row mb-3">
                 <label class="col-sm-1 col-form-label">Email</label>
                 <div class="col-sm-6">
-                    <input class="form-control" th:errorclass="'form-control alert alert-danger'" th:field="*{email}"
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{email}"
                            type="text"/>
                     <small class="form-text text-danger" th:errors="*{email}"
                            th:if="${#fields.hasErrors('email')}"></small>
+
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row mb-3">
                 <div class="col-sm-6">
-                    <input class="btn btn-primary" type="submit" value="Crear Cliente"/>
+                    <input class="btn btn-primary" type="submit" th:value="${TextButton}"/>
                 </div>
             </div>
         </form>
+        <p id="ErrorEdt" style="display: none" th:text="${ErrorEdt}"></p>
     </div>
     <!-- Incluir el Footer -->
     <div th:replace="fragments/footer :: footer"></div>
     <script src="/js/jquery-3.5.1.slim.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert2@11.js"></script>
+    <script>
+        let ErrorEdt = document.getElementById("ErrorEdt").textContent;
+
+        if (ErrorEdt == "true") {
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'error',
+                title: 'No se ha podido editar el registro.',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                toast: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+        }
+    </script>
 </div>
 </body>
 

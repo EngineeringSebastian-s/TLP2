@@ -25,27 +25,29 @@ public class ClienteController {
         return "/Cliente/List";
     }
 
-    @GetMapping("/Form")
+    @GetMapping("/Create/")
     public String Create(Model model) {
 
         Cliente cliente = new Cliente();
 
-        model.addAttribute("titulo", "Formulario de Cliente");
-        model.addAttribute("cliente", cliente);
+        model.addAttribute("Title", "Formulario de Cliente");
+        model.addAttribute("TextButton", "Crear Cliente");
+        model.addAttribute("Action", "Create");
+        model.addAttribute("Client", cliente);
 
         return "/Cliente/Form";
     }
 
-    @PostMapping("/Form")
+    @PostMapping("/Create/")
     public String Save(@Valid Cliente cliente, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            model.addAttribute("titulo", "Formulario de Cliente ********");
+            model.addAttribute("Title", "Formulario de Cliente");
+            model.addAttribute("TextButton", "Crear Cliente");
             return "/Cliente/Form";
         }
 
         clienteDao.Save(cliente);
-        //Status.setComplete();
         return "redirect:/Clientes";
     }
 
@@ -58,20 +60,23 @@ public class ClienteController {
         } else {
             return "redirect:/listar";
         }
-        model.addAttribute("cliente", cliente);
-        model.addAttribute("titulo", "Editar Cliente");
+        model.addAttribute("Client", cliente);
+        model.addAttribute("Title", "Formulario de Cliente");
+        model.addAttribute("TextButton", "Editar Cliente");
+        model.addAttribute("Action", "Edit");
         return "/Cliente/Form";
     }
 
     @PostMapping("/Edit/{id}")
     public String Edit(@Valid Cliente cliente, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("titulo", "Formulario de Cliente ********");
+            model.addAttribute("Title", "Formulario de Cliente");
+            model.addAttribute("TextButton", "Editar Cliente");
+            model.addAttribute("ErrorEdt", "true");
             return "/Cliente/Form";
         }
 
         clienteDao.Save(cliente);
-        //Status.setComplete();
         return "redirect:/Clientes";
     }
 

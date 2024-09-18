@@ -24,6 +24,15 @@ public class ProductoController {
         return "/Producto/List";
     }
 
+    @GetMapping("/Delete/{id}")
+    public String Delete(@PathVariable Long id) {
+
+        if (id > 0) {
+            productoDao.Delete(id);
+        }
+        return "redirect:/Productos?confirmDel=true";
+    }
+
     @GetMapping("/Drop")
     public String Drop() {
         productoDao.Drop();

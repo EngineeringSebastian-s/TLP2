@@ -85,7 +85,7 @@ public class Cliente implements Serializable {
         Email = email;
     }
 
-    public @NotEmpty Date getCreateAt() {
+    public Date getCreateAt() {
         return CreateAt;
     }
 

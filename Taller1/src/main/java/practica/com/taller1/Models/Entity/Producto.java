@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name="productos")
+@Table(name = "productos")
 public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,8 @@ public class Producto implements Serializable {
         Stock = stock;
     }
 
-    public Producto() {}
+    public Producto() {
+    }
 
     public Long getId() {
         return Id;

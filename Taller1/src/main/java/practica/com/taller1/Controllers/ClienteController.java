@@ -4,34 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import practica.com.taller1.Models.DAO.cliente.IClienteDao;
 import practica.com.taller1.Models.Entity.Cliente;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 
 @Controller
+@RequestMapping("/Clientes")
 public class ClienteController {
 
     @Autowired
     private IClienteDao clienteDao;
 
-    @GetMapping("/")
-    public String index(Model model) {
-        return "index";
-    }
-
-    @GetMapping("/listar")
-    public String Listar(Model model) {
+    @GetMapping({"","/"})
+    public String Listar(Model model, @RequestParam(required=false) boolean confirmDel) {
         model.addAttribute("titulo", "Listado de Clientes");
         model.addAttribute("cliente", clienteDao.findAll());
-        return "listar";
+        model.addAttribute("confirmDel", confirmDel);
+        return "/Cliente/List";
     }
 
-    @GetMapping("/form")
+    @GetMapping("/Form")
     public String crear(Model model) {
 
         Cliente cliente = new Cliente();
@@ -39,34 +35,25 @@ public class ClienteController {
         model.addAttribute("titulo", "Formulario de Cliente");
         model.addAttribute("cliente", cliente);
 
-        return "form";
+        return "/Cliente/Form";
     }
 
-    //1
-    // @PostMapping("/form")
-    // public String Guardar(Cliente cliente)
-    // {
-    //     clienteDao.Save(cliente);
-
-    //     return "redirect:listar";
-    // }
-
-    @PostMapping("/form") //para validar se  agrega el valid y el bindingResul, estos siempre deben estar juntos uno tras otro
+    @PostMapping("/Form")
     public String Guardar(@Valid Cliente cliente, BindingResult result, Model model)
     {
 
         if(result.hasErrors())
         {
             model.addAttribute("titulo", "Formulario de Cliente ********");
-            return "form";
+            return "/Cliente/Form";
         }
 
         clienteDao.Save(cliente);
         //Status.setComplete();
-        return "redirect:listar";
+        return "redirect:/Clientes";
     }
 
-    @GetMapping("/form/{id}")
+    @GetMapping("/Edit/{id}")
     public String Editar(@PathVariable Long id, Model model){
         Cliente cliente=null;
 
@@ -77,16 +64,16 @@ public class ClienteController {
         }
         model.addAttribute("cliente", cliente);
         model.addAttribute("titulo", "Editar Cliente");
-        return "form";
+        return "/Cliente/Form";
     }
 
-    @GetMapping("/eliminar/{id}")
+    @GetMapping("/Delete/{id}")
     public String Eliminar(@PathVariable Long id){
 
         if(id>0){
             clienteDao.Delete(id);
         }
-        return "redirect:listar";
+        return "redirect:/Clientes?confirmDel=true";
     }
 
 }

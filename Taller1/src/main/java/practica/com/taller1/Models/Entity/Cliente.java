@@ -1,15 +1,15 @@
 package practica.com.taller1.Models.Entity;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+import java.util.Date;
+
 @Entity
-@Table(name="clientes")
+@Table(name = "clientes")
 public class Cliente implements Serializable {
 
     @Id
@@ -39,7 +39,7 @@ public class Cliente implements Serializable {
     private Date CreateAt;
 
     @PrePersist
-    public void perPersist(){
+    public void perPersist() {
         CreateAt = new Date();
     }
 
@@ -51,7 +51,8 @@ public class Cliente implements Serializable {
         CreateAt = createAt;
     }
 
-    public Cliente(){}
+    public Cliente() {
+    }
 
     public Long getId() {
         return Id;

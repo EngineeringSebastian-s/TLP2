@@ -2,14 +2,14 @@ package practica.com.taller1.Models.DAO.cliente;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import practica.com.taller1.Models.Entity.Cliente;
 
 import java.util.List;
 
 @Repository
-public class ClienteDaoImp implements IClienteDao {
+public class RClienteDao implements IClienteDao {
 
     @PersistenceContext
     private EntityManager em;
@@ -25,10 +25,9 @@ public class ClienteDaoImp implements IClienteDao {
     @Override
     public void Save(Cliente cliente) {
 
-        if(cliente.getId()!=null && cliente.getId()>0){
+        if (cliente.getId() != null && cliente.getId() > 0) {
             em.merge(cliente);
-        }
-        else{
+        } else {
             em.persist(cliente);
         }
 
@@ -43,7 +42,7 @@ public class ClienteDaoImp implements IClienteDao {
     @Transactional
     @Override
     public void Delete(Long id) {
-        Cliente cliente=findOne(id);
+        Cliente cliente = findOne(id);
         em.remove(cliente);
     }
 

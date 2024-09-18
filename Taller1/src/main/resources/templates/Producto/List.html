@@ -32,8 +32,10 @@
                 <td th:text="${producto.uniValue}"></td>
                 <td th:text="${producto.stock}"></td>
                 <td>
-                    <a class="btn btn-success btn-xs" th:href="@{/Productos/Edit/{id}(id=${producto.id})}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${producto.id} + ')'" th:text="'Eliminar'"></a>
+                    <a class="btn btn-success btn-xs" th:href="@{/Productos/Edit/{id}(id=${producto.id})}"
+                       th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${producto.id} + ')'"
+                       th:text="'Eliminar'"></a>
                 </td>
             </tr>
             </tbody>
@@ -42,8 +44,8 @@
         <a class="btn btn-success btn-xs" th:href="@{Productos/Create}">Crear</a>
         <a class="btn btn-danger btn-xs" th:onclick="'confirmDeleteAll()'">Vaciar</a>
     </div>
-    <p id="confirmDel" style="display: none" th:text="${confirmDel}"> </p>
-    <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"> </p>
+    <p id="confirmDel" style="display: none" th:text="${confirmDel}"></p>
+    <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"></p>
     <!-- Incluir el Footer -->
     <div th:replace="fragments/footer :: footer"></div>
     <script src="/js/jquery-3.7.1.slim.min.js"></script>

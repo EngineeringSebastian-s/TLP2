@@ -30,10 +30,10 @@ public class ClienteController {
 
         Cliente cliente = new Cliente();
 
+        model.addAttribute("Client", cliente);
         model.addAttribute("Title", "Formulario de Cliente");
         model.addAttribute("TextButton", "Crear Cliente");
         model.addAttribute("Action", "Create");
-        model.addAttribute("Client", cliente);
 
         return "/Cliente/Form";
     }
@@ -42,8 +42,11 @@ public class ClienteController {
     public String Save(@Valid Cliente cliente, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
+            model.addAttribute("Client", cliente);
             model.addAttribute("Title", "Formulario de Cliente");
             model.addAttribute("TextButton", "Crear Cliente");
+            model.addAttribute("Action", "Create");
+            model.addAttribute("ErrorCtr", "true");
             return "/Cliente/Form";
         }
 
@@ -58,7 +61,7 @@ public class ClienteController {
         if (id > 0) {
             cliente = clienteDao.findOne(id);
         } else {
-            return "redirect:/listar";
+            return "redirect:/Clientes";
         }
         model.addAttribute("Client", cliente);
         model.addAttribute("Title", "Formulario de Cliente");
@@ -70,8 +73,10 @@ public class ClienteController {
     @PostMapping("/Edit/{id}")
     public String Edit(@Valid Cliente cliente, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("Client", cliente);
             model.addAttribute("Title", "Formulario de Cliente");
             model.addAttribute("TextButton", "Editar Cliente");
+            model.addAttribute("Action", "Edit");
             model.addAttribute("ErrorEdt", "true");
             return "/Cliente/Form";
         }

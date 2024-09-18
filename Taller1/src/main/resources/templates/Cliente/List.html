@@ -27,10 +27,10 @@
             <tbody>
             <tr th:each="cliente:${cliente}">
                 <td th:text="${cliente.id}"></td>
-                <td th:text="${cliente.Name}"></td>
-                <td th:text="${cliente.Lastname}"></td>
-                <td th:text="${cliente.Email}"></td>
-                <td th:text="${cliente.CreateAt}"></td>
+                <td th:text="${cliente.name}"></td>
+                <td th:text="${cliente.lastname}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td th:text="${cliente.createAt}"></td>
                 <td>
                     <a class="btn btn-success btn-xs" th:href="@{/Clientes/Edit/{id}(id=${cliente.id})}"
                        th:text="'Editar'"></a>

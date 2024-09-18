@@ -53,6 +53,7 @@
             </div>
         </form>
         <p id="ErrorEdt" style="display: none" th:text="${ErrorEdt}"></p>
+        <p id="ErrorCtr" style="display: none" th:text="${ErrorCtr}"></p>
     </div>
     <!-- Incluir el Footer -->
     <div th:replace="fragments/footer :: footer"></div>
@@ -62,6 +63,7 @@
     <script src="/js/sweetalert2@11.js"></script>
     <script>
         let ErrorEdt = document.getElementById("ErrorEdt").textContent;
+        let ErrorCtr = document.getElementById("ErrorCtr").textContent;
 
         if (ErrorEdt == "true") {
             Swal.fire({
@@ -77,7 +79,23 @@
                     toast.addEventListener('mouseleave', Swal.resumeTimer);
                 }
             });
+        }else if (ErrorCtr == "true"){
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'error',
+                title: 'No se ha podido crear el registro.',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                toast: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
         }
+
+
     </script>
 </div>
 </body>

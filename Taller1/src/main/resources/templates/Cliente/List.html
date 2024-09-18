@@ -40,7 +40,7 @@
 
         </table>
         <a class="btn btn-success btn-xs" th:href="@{Clientes/Create}">Crear</a>
-        <a class="btn btn-danger btn-xs" th:href="@{Clientes/Drop}">Vaciar</a>
+        <a class="btn btn-danger btn-xs"  th:onclick="'confirmDeleteAll()'">Vaciar</a>
     </div>
     <p id="confirmDel" style="display: none" th:text="${confirmDel}"> </p>
     <!-- Incluir el Footer -->
@@ -81,6 +81,23 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = `/Clientes/Delete/${id}`;
+                }
+            });
+        }
+
+        function confirmDeleteAll() {
+            Swal.fire({
+                title: '¿Estás seguro de dejar vacia toda la tabla?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Clientes/Drop';
                 }
             });
         }

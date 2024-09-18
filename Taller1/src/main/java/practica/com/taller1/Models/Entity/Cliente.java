@@ -33,7 +33,6 @@ public class Cliente implements Serializable {
     @Column(name = "email")
     private String Email;
 
-    @NotEmpty
     @Column(name = "create_at", updatable = false)
     @Temporal(TemporalType.DATE)
     private Date CreateAt;

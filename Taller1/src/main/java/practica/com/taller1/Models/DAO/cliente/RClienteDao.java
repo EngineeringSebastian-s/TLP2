@@ -46,6 +46,11 @@ public class RClienteDao implements IClienteDao {
         em.remove(cliente);
     }
 
+    @Transactional
+    @Override
+    public void Drop() {
+        em.createQuery("delete from Cliente ").executeUpdate();
+    }
 
 }
 

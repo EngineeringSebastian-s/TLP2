@@ -1,16 +1,13 @@
 package practica.com.taller1.Controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import practica.com.taller1.Models.DAO.cliente.IClienteDao;
 import practica.com.taller1.Models.Entity.Cliente;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/Clientes")
@@ -19,16 +16,17 @@ public class ClienteController {
     @Autowired
     private IClienteDao clienteDao;
 
-    @GetMapping({"","/"})
-    public String Listar(Model model, @RequestParam(required=false) boolean confirmDel) {
+    @GetMapping({"", "/"})
+    public String Listar(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
         model.addAttribute("titulo", "Listado de Clientes");
         model.addAttribute("cliente", clienteDao.findAll());
         model.addAttribute("confirmDel", confirmDel);
+        model.addAttribute("confirmEdt", confirmEdt);
         return "/Cliente/List";
     }
 
     @GetMapping("/Form")
-    public String crear(Model model) {
+    public String Create(Model model) {
 
         Cliente cliente = new Cliente();
 
@@ -39,11 +37,9 @@ public class ClienteController {
     }
 
     @PostMapping("/Form")
-    public String Guardar(@Valid Cliente cliente, BindingResult result, Model model)
-    {
+    public String Save(@Valid Cliente cliente, BindingResult result, Model model) {
 
-        if(result.hasErrors())
-        {
+        if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Cliente ********");
             return "/Cliente/Form";
         }
@@ -54,12 +50,12 @@ public class ClienteController {
     }
 
     @GetMapping("/Edit/{id}")
-    public String Editar(@PathVariable Long id, Model model){
-        Cliente cliente=null;
+    public String Edit(@PathVariable Long id, Model model) {
+        Cliente cliente = null;
 
-        if(id>0){
-            cliente=clienteDao.findOne(id);
-        }else{
+        if (id > 0) {
+            cliente = clienteDao.findOne(id);
+        } else {
             return "redirect:/listar";
         }
         model.addAttribute("cliente", cliente);
@@ -67,12 +63,30 @@ public class ClienteController {
         return "/Cliente/Form";
     }
 
-    @GetMapping("/Delete/{id}")
-    public String Eliminar(@PathVariable Long id){
+    @PostMapping("/Edit/{id}")
+    public String Edit(@Valid Cliente cliente, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("titulo", "Formulario de Cliente ********");
+            return "/Cliente/Form";
+        }
 
-        if(id>0){
+        clienteDao.Save(cliente);
+        //Status.setComplete();
+        return "redirect:/Clientes";
+    }
+
+    @GetMapping("/Delete/{id}")
+    public String Delete(@PathVariable Long id) {
+
+        if (id > 0) {
             clienteDao.Delete(id);
         }
+        return "redirect:/Clientes?confirmDel=true";
+    }
+
+    @GetMapping("/Drop")
+    public String Drop() {
+        clienteDao.Drop();
         return "redirect:/Clientes?confirmDel=true";
     }
 

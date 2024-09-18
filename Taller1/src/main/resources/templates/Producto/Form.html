@@ -1,10 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${Title}">Title</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
+<body>
+<div class="container-fluid text-light pl-5" style="background-color: #0D0D0D;min-height: 100vh;height:100%">
+    <!-- Incluir el navbar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-fluid text-light p-5" style="background-color: #0D0D0D;">
+
+        <h1 class="text-primary border border-success border-bottom  border-0" th:text="${Title}"></h1>
+
+        <form method="post" th:action="@{/Productos/{action}/{id}(id=${Product.id},action=${Action})}"
+              th:object="${Product}">
+            <input type="hidden" th:field="*{id}" />
+            <div class="form-group row mb-3">
+                <label class="col-sm-1 col-form-label">Nombre</label>
+                <div class="col-sm-6">
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{name}"
+                           type="text"/>
+                    <small class="form-text text-danger" th:errors="*{name}"
+                           th:if="${#fields.hasErrors('name')}">a</small>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label class="col-sm-1 col-form-label">Descripciòn</label>
+                <div class="col-sm-6">
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{description}"
+                           type="text"/>
+                    <small class="form-text text-danger" th:errors="*{description}"
+                           th:if="${#fields.hasErrors('description')}"></small>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label class="col-sm-1 col-form-label">Valor Unitario</label>
+                <div class="col-sm-6">
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{uniValue}"
+                           type="text"/>
+                    <small class="form-text text-danger" th:errors="*{uniValue}"
+                           th:if="${#fields.hasErrors('uniValue')}"></small>
+
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label class="col-sm-1 col-form-label">Stock</label>
+                <div class="col-sm-6">
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{stock}"
+                           type="text"/>
+                    <small class="form-text text-danger" th:errors="*{stock}"
+                           th:if="${#fields.hasErrors('stock')}"></small>
+
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <div class="col-sm-6">
+                    <input class="btn btn-primary" th:value="${TextButton}" type="submit"/>
+                </div>
+            </div>
+        </form>
+        <p id="ErrorEdt" style="display: none" th:text="${ErrorEdt}"></p>
+        <p id="ErrorCtr" style="display: none" th:text="${ErrorCtr}"></p>
+    </div>
+    <!-- Incluir el Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/jquery-3.7.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert2@11.js"></script>
+    <script>
+        let ErrorEdt = document.getElementById("ErrorEdt").textContent;
+        let ErrorCtr = document.getElementById("ErrorCtr").textContent;
+
+        if (ErrorEdt == "true") {
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'error',
+                title: 'No se ha podido editar el registro.',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                toast: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+        }else if (ErrorCtr == "true"){
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'error',
+                title: 'No se ha podido crear el registro.',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                toast: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+        }
+
+
+    </script>
+</div>
 </body>
+
 </html>

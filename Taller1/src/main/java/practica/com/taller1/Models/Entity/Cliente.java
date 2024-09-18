@@ -89,7 +89,7 @@ public class Cliente implements Serializable {
         return createAt;
     }
 
-    public void setCreateAt(@NotEmpty Date createat) {
-        this.createAt = createat;
+    public void setCreateAt(@NotEmpty Date createAt) {
+        this.createAt = createAt;
     }
 }

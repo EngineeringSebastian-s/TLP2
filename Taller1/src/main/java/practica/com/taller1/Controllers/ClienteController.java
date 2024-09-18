@@ -18,8 +18,8 @@ public class ClienteController {
 
     @GetMapping({"", "/"})
     public String Listar(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
-        model.addAttribute("titulo", "Listado de Clientes");
-        model.addAttribute("cliente", clienteDao.findAll());
+        model.addAttribute("Title", "Listado de Clientes");
+        model.addAttribute("Client", clienteDao.findAll());
         model.addAttribute("confirmDel", confirmDel);
         model.addAttribute("confirmEdt", confirmEdt);
         return "/Cliente/List";
@@ -56,11 +56,13 @@ public class ClienteController {
 
     @GetMapping("/Edit/{id}")
     public String Edit(@PathVariable Long id, Model model) {
-        Cliente cliente = null;
+        if (id <= 0) {
+            return "redirect:/Clientes";
+        }
 
-        if (id > 0) {
-            cliente = clienteDao.findOne(id);
-        } else {
+        Cliente cliente = clienteDao.findOne(id);
+
+        if (cliente == null) {
             return "redirect:/Clientes";
         }
         model.addAttribute("Client", cliente);

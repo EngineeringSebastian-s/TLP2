@@ -14,7 +14,7 @@ public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id;
+    private Long id;
 
     @NotEmpty(message = "El nombre no puede estar vacío")
     @Size(min = 4, max = 15, message = "El nombre debe tener entre 4 y 15 caracteres")
@@ -24,35 +24,35 @@ public class Producto implements Serializable {
     @NotEmpty(message = "La descripción no puede estar vacía")
     @Size(min = 10, max = 120, message = "La descripción debe tener entre 10 y 120 caracteres")
     @Column(name = "description")
-    private String Description;
+    private String description;
 
     @NotNull(message = "El valor unitario no puede ser nulo")
     @Positive(message = "El valor unitario debe ser positivo")
     @Column(name = "unit_value")
-    private Long UniValue;
+    private Long uniValue;
 
     @NotNull(message = "El stock no puede ser nulo")
     @Positive(message = "El stock debe ser positivo")
     @Column(name = "stock")
-    private Long Stock;
+    private Long stock;
 
     public Producto(Long id, String name, String description, Long uniValue, Long stock) {
-        Id = id;
+        this.id = id;
         Name = name;
-        Description = description;
-        UniValue = uniValue;
-        Stock = stock;
+        this.description = description;
+        this.uniValue = uniValue;
+        this.stock = stock;
     }
 
     public Producto() {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public @NotEmpty(message = "El nombre no puede estar vacío") @Size(min = 4, max = 15, message = "El nombre debe tener entre 4 y 15 caracteres") String getName() {
@@ -64,26 +64,26 @@ public class Producto implements Serializable {
     }
 
     public @NotEmpty(message = "La descripción no puede estar vacía") @Size(min = 10, max = 120, message = "La descripción debe tener entre 10 y 120 caracteres") String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(@NotEmpty(message = "La descripción no puede estar vacía") @Size(min = 10, max = 120, message = "La descripción debe tener entre 10 y 120 caracteres") String description) {
-        Description = description;
+        this.description = description;
     }
 
     public @NotNull(message = "El valor unitario no puede ser nulo") @Positive(message = "El valor unitario debe ser positivo") Long getUniValue() {
-        return UniValue;
+        return uniValue;
     }
 
     public void setUniValue(@NotNull(message = "El valor unitario no puede ser nulo") @Positive(message = "El valor unitario debe ser positivo") Long uniValue) {
-        UniValue = uniValue;
+        this.uniValue = uniValue;
     }
 
     public @NotNull(message = "El stock no puede ser nulo") @Positive(message = "El stock debe ser positivo") Long getStock() {
-        return Stock;
+        return stock;
     }
 
     public void setStock(@NotNull(message = "El stock no puede ser nulo") @Positive(message = "El stock debe ser positivo") Long stock) {
-        Stock = stock;
+        this.stock = stock;
     }
 }

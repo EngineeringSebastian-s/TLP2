@@ -54,6 +54,7 @@
         </form>
         <p id="ErrorEdt" style="display: none" th:text="${ErrorEdt}"></p>
         <p id="ErrorCtr" style="display: none" th:text="${ErrorCtr}"></p>
+        <p id="ErrorDes" style="display: none" th:text="${ErrorDes}"></p>
     </div>
     <!-- Incluir el Footer -->
     <div th:replace="fragments/footer :: footer"></div>
@@ -64,12 +65,13 @@
     <script>
         let ErrorEdt = document.getElementById("ErrorEdt").textContent;
         let ErrorCtr = document.getElementById("ErrorCtr").textContent;
+        let ErrorDes = document.getElementById("ErrorDes").textContent;
 
         if (ErrorEdt == "true") {
             Swal.fire({
                 position: 'bottom-end',
                 icon: 'error',
-                title: 'No se ha podido editar el registro.',
+                title: 'No se ha podido editar el registro.('+ErrorDes+')',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
@@ -83,7 +85,7 @@
             Swal.fire({
                 position: 'bottom-end',
                 icon: 'error',
-                title: 'No se ha podido crear el registro.',
+                title: 'No se ha podido crear el registro.('+ErrorDes+')',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,

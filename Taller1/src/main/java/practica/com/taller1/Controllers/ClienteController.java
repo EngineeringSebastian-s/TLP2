@@ -47,6 +47,7 @@ public class ClienteController {
             model.addAttribute("TextButton", "Crear Cliente");
             model.addAttribute("Action", "Create");
             model.addAttribute("ErrorCtr", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
             return "/Cliente/Form";
         }
 
@@ -80,6 +81,7 @@ public class ClienteController {
             model.addAttribute("TextButton", "Editar Cliente");
             model.addAttribute("Action", "Edit");
             model.addAttribute("ErrorEdt", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
             return "/Cliente/Form";
         }
 

@@ -47,6 +47,7 @@ public class ProductoController {
             model.addAttribute("TextButton", "Crear Producto");
             model.addAttribute("Action", "Create");
             model.addAttribute("ErrorCtr", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
             return "/Producto/Form";
         }
 
@@ -80,6 +81,7 @@ public class ProductoController {
             model.addAttribute("TextButton", "Editar Producto");
             model.addAttribute("Action", "Edit");
             model.addAttribute("ErrorEdt", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
             return "/Producto/Form";
         }
 

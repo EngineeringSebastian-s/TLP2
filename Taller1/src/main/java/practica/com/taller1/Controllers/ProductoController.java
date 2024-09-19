@@ -1,5 +1,6 @@
 package practica.com.taller1.Controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,9 @@ import practica.com.taller1.Models.DAO.producto.IProductoDao;
 import practica.com.taller1.Models.Entity.Cliente;
 import practica.com.taller1.Models.Entity.Producto;
 
+import java.io.PrintWriter;
+import java.util.List;
+
 @Controller
 @RequestMapping("/Productos")
 public class ProductoController {
@@ -18,8 +22,8 @@ public class ProductoController {
 
     @GetMapping({"", "/"})
     public String Listar(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
-        model.addAttribute("titulo", "Listado de Productos");
-        model.addAttribute("producto", productoDao.findAll());
+        model.addAttribute("Title", "Listado de Productos");
+        model.addAttribute("Product", productoDao.findAll());
         model.addAttribute("confirmDel", confirmDel);
         model.addAttribute("confirmEdt", confirmEdt);
         return "/Producto/List";
@@ -31,7 +35,7 @@ public class ProductoController {
         Producto producto = new Producto();
 
         model.addAttribute("Product", producto);
-        model.addAttribute("Title", "Formulario de Cliente");
+        model.addAttribute("Title", "Formulario de Producto");
         model.addAttribute("TextButton", "Crear Producto");
         model.addAttribute("Action", "Create");
 
@@ -43,7 +47,7 @@ public class ProductoController {
 
         if (result.hasErrors()) {
             model.addAttribute("Product", producto);
-            model.addAttribute("Title", "Formulario de Cliente");
+            model.addAttribute("Title", "Formulario de Producto");
             model.addAttribute("TextButton", "Crear Producto");
             model.addAttribute("Action", "Create");
             model.addAttribute("ErrorCtr", "true");
@@ -67,7 +71,7 @@ public class ProductoController {
             return "redirect:/Productos";
         }
         model.addAttribute("Product", producto);
-        model.addAttribute("Title", "Formulario de Cliente");
+        model.addAttribute("Title", "Formulario de Producto");
         model.addAttribute("TextButton", "Editar Producto");
         model.addAttribute("Action", "Edit");
         return "/Producto/Form";
@@ -102,5 +106,28 @@ public class ProductoController {
     public String Drop() {
         productoDao.Drop();
         return "redirect:/Productos?confirmDel=true";
+    }
+
+    @GetMapping("/Download")
+    public void Download(HttpServletResponse response) {
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; filename=Productos.csv");
+
+        List<Producto> productos = productoDao.findAll();
+        try (PrintWriter writer = response.getWriter()) {
+            writer.println("Id,Name,Description,UnitValue,Stock");
+            for (Producto producto : productos) {
+                writer.println(String.join(",",
+                                String.valueOf(producto.getId()),
+                                producto.getName(),
+                                producto.getDescription(),
+                                String.valueOf(producto.getUniValue()),
+                                String.valueOf(producto.getStock())
+                        )
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

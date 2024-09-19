@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title th:text="${Title}">Title</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<!-- Incluir el head -->
+<div th:replace="fragments/head :: head"></div>
 
 <body>
 <div class="container-fluid text-light pl-5" style="background-color: #0D0D0D;min-height: 100vh;height:100%">
@@ -41,8 +38,9 @@
             </tbody>
 
         </table>
-        <a class="btn btn-success btn-xs" th:href="@{Clientes/Create/}">Crear</a>
+        <a class="btn btn-success btn-xs" th:href="@{Clientes/Create/}">Agregar</a>
         <a class="btn btn-danger btn-xs" th:onclick="'confirmDeleteAll()'">Vaciar</a>
+        <a class="btn btn-primary btn-xs" th:href="@{Clientes/Download}">Descargar</a>
     </div>
     <p id="confirmDel" style="display: none" th:text="${confirmDel}"></p>
     <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"></p>

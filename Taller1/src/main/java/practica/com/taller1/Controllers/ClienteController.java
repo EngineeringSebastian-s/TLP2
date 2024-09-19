@@ -1,5 +1,6 @@
 package practica.com.taller1.Controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import practica.com.taller1.Models.DAO.cliente.IClienteDao;
 import practica.com.taller1.Models.Entity.Cliente;
+
+import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 @RequestMapping("/Clientes")
@@ -102,6 +106,29 @@ public class ClienteController {
     public String Drop() {
         clienteDao.Drop();
         return "redirect:/Clientes?confirmDel=true";
+    }
+
+    @GetMapping("/Download")
+    public void Download(HttpServletResponse response) {
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; filename=Clientes.csv");
+
+        List<Cliente> clientes = clienteDao.findAll();
+        try (PrintWriter writer = response.getWriter()) {
+            writer.println("Id,Name,Lastname,Email,CreateAt");
+            for (Cliente cliente : clientes) {
+                writer.println(String.join(",",
+                        String.valueOf(cliente.getId()),
+                        cliente.getName(),
+                        cliente.getLastname(),
+                        cliente.getEmail(),
+                        String.valueOf(cliente.getCreateAt())
+                        )
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

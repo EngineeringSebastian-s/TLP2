@@ -21,7 +21,7 @@ public class ClienteController {
     private IClienteDao clienteDao;
 
     @GetMapping({"", "/"})
-    public String Listar(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
+    public String List(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
         model.addAttribute("Title", "Listado de Clientes");
         model.addAttribute("Client", clienteDao.findAll());
         model.addAttribute("confirmDel", confirmDel);

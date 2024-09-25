@@ -58,3 +58,13 @@ INSERT INTO PRODUCTOS(name, description, unit_value, stock) VALUES('Producto 27'
 INSERT INTO PRODUCTOS(name, description, unit_value, stock) VALUES('Producto 28', 'Descripción del producto 28', 28000, 2800);
 INSERT INTO PRODUCTOS(name, description, unit_value, stock) VALUES('Producto 29', 'Descripción del producto 29', 29000, 2900);
 INSERT INTO PRODUCTOS(name, description, unit_value, stock) VALUES('Producto 30', 'Descripción del producto 30', 30000, 3000);
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (1, 1, 5, '2024-09-01');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (2, 2, 10, '2024-09-02');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (3, 3, 3, '2024-09-03');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (4, 4, 1, '2024-09-04');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (5, 5, 2, '2024-09-05');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (6, 6, 7, '2024-09-06');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (7, 7, 4, '2024-09-07');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (8, 8, 6, '2024-09-08');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (9, 9, 8, '2024-09-09');
+INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (10, 10, 9, '2024-09-10');

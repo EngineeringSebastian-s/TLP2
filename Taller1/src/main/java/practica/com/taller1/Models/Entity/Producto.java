@@ -19,7 +19,7 @@ public class Producto implements Serializable {
     @NotEmpty(message = "El nombre no puede estar vacío")
     @Size(min = 4, max = 15, message = "El nombre debe tener entre 4 y 15 caracteres")
     @Column(name = "name")
-    private String Name;
+    private String name;
 
     @NotEmpty(message = "La descripción no puede estar vacía")
     @Size(min = 10, max = 120, message = "La descripción debe tener entre 10 y 120 caracteres")
@@ -38,7 +38,7 @@ public class Producto implements Serializable {
 
     public Producto(Long id, String name, String description, Long uniValue, Long stock) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.description = description;
         this.uniValue = uniValue;
         this.stock = stock;
@@ -56,11 +56,11 @@ public class Producto implements Serializable {
     }
 
     public @NotEmpty(message = "El nombre no puede estar vacío") @Size(min = 4, max = 15, message = "El nombre debe tener entre 4 y 15 caracteres") String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(@NotEmpty(message = "El nombre no puede estar vacío") @Size(min = 4, max = 15, message = "El nombre debe tener entre 4 y 15 caracteres") String name) {
-        Name = name;
+        this.name = name;
     }
 
     public @NotEmpty(message = "La descripción no puede estar vacía") @Size(min = 10, max = 120, message = "La descripción debe tener entre 10 y 120 caracteres") String getDescription() {

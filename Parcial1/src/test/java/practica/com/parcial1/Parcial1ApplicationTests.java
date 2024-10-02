@@ -1,10 +1,10 @@
-package practica.com.taller2;
+package practica.com.parcial1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Taller2ApplicationTests {
+class Parcial1ApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,13 +1,13 @@
-package practica.com.taller2;
+package practica.com.parcial1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Taller2Application {
+public class Parcial1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Taller2Application.class, args);
+        SpringApplication.run(Parcial1Application.class, args);
     }
 
 }

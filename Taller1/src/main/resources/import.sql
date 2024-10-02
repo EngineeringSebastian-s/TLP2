@@ -68,3 +68,13 @@ INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (7, 7, 4, 
 INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (8, 8, 6, '2024-09-08');
 INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (9, 9, 8, '2024-09-09');
 INSERT INTO VENTAS(cliente_id, producto_id, amount, create_at) VALUES (10, 10, 9, '2024-09-10');
+INSERT INTO ENCABEZADO (client_id, sub_total, date, total, total_discount) VALUES (1, 5000, '2024-09-01', 5000, 0);
+INSERT INTO ENCABEZADO (client_id, sub_total, date, total, total_discount) VALUES (2, 10000, '2024-09-02', 10000, 0);
+INSERT INTO ENCABEZADO (client_id, sub_total, date, total, total_discount) VALUES (3, 3000, '2024-09-03', 3000, 0);
+INSERT INTO ENCABEZADO (client_id, sub_total, date, total, total_discount) VALUES (4, 1000, '2024-09-04', 1000, 0);
+INSERT INTO ENCABEZADO (client_id, sub_total, date, total, total_discount) VALUES (5, 2000, '2024-09-05', 2000, 0);
+INSERT INTO DETALLE (header_id, product_id, quantity, cost, discount) VALUES (1, 1, 5, 1000,0);
+INSERT INTO DETALLE (header_id, product_id, quantity, cost, discount) VALUES (2, 2, 10, 2000,0);
+INSERT INTO DETALLE (header_id, product_id, quantity, cost, discount) VALUES (3, 3, 3, 3000,0);
+INSERT INTO DETALLE (header_id, product_id, quantity, cost, discount) VALUES (4, 4, 1, 4000,0);
+INSERT INTO DETALLE (header_id, product_id, quantity, cost, discount) VALUES (5, 5, 2, 5000,0);

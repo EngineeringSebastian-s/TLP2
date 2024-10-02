@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import practica.com.taller1.Models.Entity.Cliente;
+import practica.com.parcial1.Models.Entity.Cliente;
 
 import java.util.List;
 

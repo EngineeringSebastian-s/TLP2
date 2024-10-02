@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import practica.com.taller1.Models.DAO.producto.IProductoDao;
-import practica.com.taller1.Models.Entity.Producto;
+import practica.com.parcial1.Models.DAO.producto.IProductoDao;
+import practica.com.parcial1.Models.Entity.Producto;
 
 import java.io.PrintWriter;
 import java.util.List;

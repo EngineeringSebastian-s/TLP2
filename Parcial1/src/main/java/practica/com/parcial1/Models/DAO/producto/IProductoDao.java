@@ -1,6 +1,6 @@
 package practica.com.parcial1.Models.DAO.producto;
 
-import practica.com.taller1.Models.Entity.Producto;
+import practica.com.parcial1.Models.Entity.Producto;
 
 import java.util.List;
 

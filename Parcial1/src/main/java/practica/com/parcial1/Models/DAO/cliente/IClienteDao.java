@@ -1,6 +1,6 @@
 package practica.com.parcial1.Models.DAO.cliente;
 
-import practica.com.taller1.Models.Entity.Cliente;
+import practica.com.parcial1.Models.Entity.Cliente;
 
 import java.util.List;
 

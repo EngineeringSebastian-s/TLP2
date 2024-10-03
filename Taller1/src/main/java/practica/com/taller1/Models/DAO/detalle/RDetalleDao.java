@@ -56,8 +56,9 @@ public class RDetalleDao implements IDetalleDao {
     @Transactional(readOnly = true)
     @Override
     public List<Detalle> findByEncabezadoId(Long encabezadoId) {
-        return em.createQuery("from Detalle where encabezado.id = :encabezadoId")
+        return em.createQuery("from Detalle where header.id = :encabezadoId", Detalle.class)
                 .setParameter("encabezadoId", encabezadoId)
                 .getResultList();
     }
+
 }

@@ -6,10 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import practica.com.taller1.Models.DAO.cliente.IClienteDao;
 import practica.com.taller1.Models.DAO.encabezado.IEncabezadoDao;
 import practica.com.taller1.Models.DAO.detalle.IDetalleDao;
+import practica.com.taller1.Models.DAO.producto.IProductoDao;
+import practica.com.taller1.Models.Entity.Cliente;
 import practica.com.taller1.Models.Entity.Encabezado;
 import practica.com.taller1.Models.Entity.Detalle;
+import practica.com.taller1.Models.Entity.Producto;
 
 import java.util.List;
 
@@ -23,10 +27,32 @@ public class CompraController {
     @Autowired
     private IDetalleDao detalleDao;
 
+    @Autowired
+    private IProductoDao productoDao;
+
+    @Autowired
+    private IClienteDao clienteDao;
+
+
+
     @GetMapping({"", "/"})
     public String Listar(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
+        List<Detalle> detalles = detalleDao.findAll();
+
+        // Obtener el cliente y el producto para cada detalle
+        for (Detalle detalle : detalles) {
+            Encabezado encabezado = encabezadoDao.findOne(detalle.getHeader().getId());
+            detalle.setHeader(encabezado);
+
+            Producto producto = productoDao.findOne(detalle.getProductId());
+            detalle .setProduct(producto);
+
+            Cliente cliente = clienteDao.findOne(encabezado.getClientId());
+            encabezado.setCliente(cliente);
+        }
+
         model.addAttribute("Title", "Listado de Compras");
-        model.addAttribute("Encabezados", encabezadoDao.findAll());
+        model.addAttribute("Detalles", detalles);
         model.addAttribute("confirmDel", confirmDel);
         model.addAttribute("confirmEdt", confirmEdt);
         return "/Compra/List";

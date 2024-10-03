@@ -32,6 +32,7 @@ public class Detalle implements Serializable {
     @Column(name = "discount")
     private Double discount;
 
+
     @ManyToOne
     @JoinColumn(name = "header_id", insertable = false, updatable = false)
     private Encabezado header;

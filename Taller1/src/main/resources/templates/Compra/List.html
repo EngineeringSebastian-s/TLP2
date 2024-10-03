@@ -12,22 +12,51 @@
     <table class="table table-dark table-striped">
       <thead>
       <tr>
-        <th>Id</th>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Valor Total</th>
-        <th>Acciones</th>
+        <th>Encabezado: Fecha</th>
+        <th>Subtotal</th>
+        <th>Total</th>
+        <th>Descuento Total</th>
+        <th>Cliente: ID</th>
+        <th>Cliente: Nombre</th>
+        <th>Detalles</th>
       </tr>
       </thead>
       <tbody>
-      <tr th:each="compra: ${Compras}">
-        <td th:text="${compra.id}"></td>
-        <td th:text="${compra.producto}"></td>
-        <td th:text="${compra.cantidad}"></td>
-        <td th:text="${compra.valorTotal}"></td>
+      <!-- Iterar sobre la lista de compras -->
+      <tr th:each="compra : ${Compras}">
+        <!-- Mostrar información del Encabezado -->
+        <td th:text="${compra.encabezado.fecha}"></td>
+        <td th:text="${compra.encabezado.subTotal}"></td>
+        <td th:text="${compra.encabezado.total}"></td>
+        <td th:text="${compra.encabezado.totalDiscount}"></td>
+
+        <!-- Mostrar información del Cliente -->
+        <td th:text="${compra.encabezado.cliente.id}"></td>
+        <td th:text="${compra.encabezado.cliente.nombre}"></td>
+
+        <!-- Mostrar los detalles de la compra -->
         <td>
-          <a class="btn btn-success btn-xs" th:href="@{/Compra/Edit/{id}(id=${compra.id})}" th:text="'Editar'"></a>
-          <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${compra.id} + ')'" th:text="'Eliminar'"></a>
+          <table>
+            <thead>
+            <tr>
+              <th>Producto: ID</th>
+              <th>Producto: Nombre</th>
+              <th>Cantidad</th>
+              <th>Costo</th>
+              <th>Descuento</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterar sobre la lista de detalles -->
+            <tr th:each="detalle : ${compra.detalles}">
+              <td th:text="${detalle.producto.id}"></td>
+              <td th:text="${detalle.producto.nombre}"></td>
+              <td th:text="${detalle.cantidad}"></td>
+              <td th:text="${detalle.costo}"></td>
+              <td th:text="${detalle.descuento}"></td>
+            </tr>
+            </tbody>
+          </table>
         </td>
       </tr>
       </tbody>

@@ -22,16 +22,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="cliente:${Client}">
-                <td th:text="${cliente.id}"></td>
-                <td th:text="${cliente.name}"></td>
-                <td th:text="${cliente.lastname}"></td>
-                <td th:text="${cliente.email}"></td>
-                <td th:text="${cliente.createAt}"></td>
+            <tr th:each="user:${Client}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastname}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.createAt}"></td>
                 <td>
-                    <a class="btn btn-success btn-xs" th:href="@{/Clientes/Edit/{id}(id=${cliente.id})}"
+                    <a class="btn btn-success btn-xs" th:href="@{/Clientes/Edit/{id}(id=${user.id})}"
                        th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${cliente.id} + ')'"
+                    <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${user.id} + ')'"
                        th:text="'Eliminar'"></a>
                 </td>
             </tr>
@@ -72,7 +72,7 @@
         function confirmDelete(id) {
             Swal.fire({
                 title: '¿Estás seguro?',
-                text: "¡No podrás revertir esto!",
+                text: "Esto eliminara todas las compras relacionadas al usuario¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -89,7 +89,7 @@
         function confirmDeleteAll() {
             Swal.fire({
                 title: '¿Estás seguro de dejar vacia toda la tabla?',
-                text: "¡No podrás revertir esto!",
+                text: "Esto eliminara todas las compras realizadas, junto con sus detalles¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

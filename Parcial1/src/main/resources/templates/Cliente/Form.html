@@ -44,6 +44,26 @@
                 </div>
             </div>
             <div class="form-group row mb-3">
+                <label class="col-sm-1 col-form-label">Rol</label>
+                <div class="col-sm-6">
+                    <select class="form-control" th:errorclass="'border border-danger'" th:field="*{role}" type="text">
+                        <option value="Cliente">Cliente</option>
+                    </select>
+                    <small class="form-text text-danger" th:errors="*{role}"
+                           th:if="${#fields.hasErrors('role')}"></small>
+
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label class="col-sm-1 col-form-label">Contraseña</label>
+                <div class="col-sm-6">
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{password}"
+                           type="password"/>
+                    <small class="form-text text-danger" th:errors="*{password}"
+                           th:if="${#fields.hasErrors('password')}"></small>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
                 <div class="col-sm-6">
                     <input class="btn btn-primary" th:value="${TextButton}" type="submit"/>
                 </div>

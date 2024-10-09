@@ -24,14 +24,14 @@ public class RPurchaseDao implements IPurchaseDao {
     @Transactional
     @Override
     public Purchase save(Purchase purchase) {
-            if (purchase.getId() != null && purchase.getId() > 0) {
-                Purchase existingPurchase = em.find(Purchase.class, purchase.getId());
-                if (existingPurchase != null) {
-                    purchase = em.merge(purchase);
-                }
-            } else {
-                em.persist(purchase);
+        if (purchase.getId() != null && purchase.getId() > 0) {
+            Purchase existingPurchase = em.find(Purchase.class, purchase.getId());
+            if (existingPurchase != null) {
+                purchase = em.merge(purchase);
             }
+        } else {
+            em.persist(purchase);
+        }
         return purchase;
     }
 
@@ -45,11 +45,20 @@ public class RPurchaseDao implements IPurchaseDao {
 
     @Transactional
     @Override
-    public void delete(Long id) { // Cambiado de Delete a delete
-            Purchase purchase = findOne(id);
-            if (purchase != null) {
-                em.remove(purchase);
-            }
+    public void Delete(Long id) {
+        Purchase purchase = findOne(id);
+        if (purchase != null) {
+            em.remove(purchase);
+        }
+    }
+
+    @Transactional
+    @Override
+    public void Drop() {
+        List<Purchase> purchases = findAll();
+        for (Purchase purchase : purchases) {
+            em.remove(purchase);
+        }
     }
 
 }

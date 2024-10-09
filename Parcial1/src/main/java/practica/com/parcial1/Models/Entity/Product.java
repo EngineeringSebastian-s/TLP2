@@ -48,4 +48,14 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Detail> details;
+
+    public void addDetail(Detail detail) {
+        details.add(detail);
+        detail.setProduct(this);
+    }
+
+    public void removeDetail(Detail detail) {
+        details.remove(detail);
+        detail.setProduct(null);
+    }
 }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Incluir el head -->
+<div th:replace="fragments/head :: head"></div>
+
+<body>
+<div class="container-fluid text-light pl-5" style="background-color: #0D0D0D;min-height: 100vh;height:100%">
+    <!-- Incluir el navbar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-fluid text-light p-5" style="background-color: #0D0D0D;">
+        <h1 class="text-light border border-opacity-10 border-bottom  border-0" th:text="${Title}"></h1>
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Venta</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Descuento</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="detail : ${details}">
+                <td th:text="${detail.id}"></td>
+                <td th:text="${detail.purchase.id}"></td>
+                <td th:text="${detail.purchase.user.name} + ${detail.purchase.user.lastname}"></td>
+                <td th:text="${detail.product.name}"></td>
+                <td th:text="${detail.amount}"></td>
+                <td th:text="${detail.price}"></td>
+                <td th:text="${detail.discount}"></td>
+                <td>
+                    <a class="btn btn-success btn-xs" th:href="@{/Detalles/Edit/{id}(id=${detail.id})}"
+                       th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${detail.id} + ')'"
+                       th:text="'Eliminar'"></a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <a class="btn btn-success btn-xs" th:href="@{Detalles/Create/}">Agregar</a>
+        <a class="btn btn-danger btn-xs" th:onclick="'confirmDeleteAll()'">Vaciar</a>
+        <a class="btn btn-primary btn-xs" th:href="@{Detalles/Download}">Descargar</a>
+    </div>
+    <p id="confirmDel" style="display: none" th:text="${confirmDel}"></p>
+    <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"></p>
+    <!-- Incluir el Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/jquery-3.7.1.slim.min.js"></script>
+    <script src="/js/sweetalert2@11.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        let confirmDel = document.getElementById("confirmDel").textContent;
+
+        if (confirmDel == "true") {
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'success',
+                title: 'El registro se ha sido eliminado exitosamente.',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                toast: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+        }
+
+        function confirmDelete(id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/Detalles/Delete/${id}`;
+                }
+            });
+        }
+
+        function confirmDeleteAll() {
+            Swal.fire({
+                title: '¿Estás seguro de dejar vacia toda la tabla?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Detalles/Drop';
+                }
+            });
+        }
+    </script>
+</div>
+</body>
+</html>

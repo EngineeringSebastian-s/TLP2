@@ -24,9 +24,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="venta:${Sale}">
-        <td th:text="${venta.id}"></td>
-        <td th:text="${venta.user.name} + ' ' + ${venta.user.lastname}"></td>
+      <tr th:each="sale:${Sales}">
+        <td th:text="${sale.id}"></td>
+        <td th:text="${sale.user.name} + ' ' + ${sale.user.lastname}"></td>
         <td>
           <table class="table table-dark table-striped">
             <thead>
@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="detail : ${venta.details}">
+            <tr th:each="detail : ${sale.details}">
               <td th:text="${detail.id}"></td>
               <td th:text="${detail.product.name}"></td>
               <td th:text="${detail.amount}"></td>
@@ -49,14 +49,14 @@
             </tbody>
           </table>
         </td>
-        <td th:text="${venta.discountTotal}"></td>
-        <td th:text="${venta.subTotal}"></td>
-        <td th:text="${venta.total}"></td>
-        <td th:text="${venta.date}"></td>
+        <td th:text="${sale.discountTotal}"></td>
+        <td th:text="${sale.subTotal}"></td>
+        <td th:text="${sale.total}"></td>
+        <td th:text="${sale.date}"></td>
         <td>
-          <a class="btn btn-success btn-xs" th:href="@{/Ventas/Edit/{id}(id=${venta.id})}"
+          <a class="btn btn-success btn-xs" th:href="@{/Ventas/Edit/{id}(id=${sale.id})}"
              th:text="'Editar'"></a>
-          <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${venta.id} + ')'"
+          <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${sale.id} + ')'"
              th:text="'Eliminar'"></a>
         </td>
       </tr>

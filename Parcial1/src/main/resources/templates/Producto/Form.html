@@ -36,10 +36,10 @@
             <div class="form-group row mb-3">
                 <label class="col-sm-1 col-form-label">Valor Unitario</label>
                 <div class="col-sm-6">
-                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{uniValue}"
+                    <input class="form-control" th:errorclass="'border border-danger'" th:field="*{unitValue}"
                            type="text"/>
-                    <small class="form-text text-danger" th:errors="*{uniValue}"
-                           th:if="${#fields.hasErrors('uniValue')}"></small>
+                    <small class="form-text text-danger" th:errors="*{unitValue}"
+                           th:if="${#fields.hasErrors('unitValue')}"></small>
 
                 </div>
             </div>

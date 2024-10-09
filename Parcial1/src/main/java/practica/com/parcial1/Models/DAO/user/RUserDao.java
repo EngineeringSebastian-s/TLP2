@@ -50,15 +50,18 @@ public class RUserDao implements IUserDao {
     @Override
     public void Delete(Long id) {
         User user = findOne(id);
-        em.remove(user);
+        if (user != null) {
+            em.remove(user);
+        }
     }
 
     @Transactional
     @Override
     public void Drop() {
-        em.createQuery("delete from Detail ").executeUpdate();
-        em.createQuery("delete from Purchase").executeUpdate();
-        em.createQuery("delete from User ").executeUpdate();
+        List<User> clients = findAllClients();
+        for(User user : clients) {
+            em.remove(user);
+        }
     }
 
 }

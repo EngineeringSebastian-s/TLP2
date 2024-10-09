@@ -11,5 +11,7 @@ public interface IPurchaseDao {
 
     Purchase findOne (Long id);
 
-    void delete(Long id);
+    void Delete(Long id);
+
+    public void Drop();
 }

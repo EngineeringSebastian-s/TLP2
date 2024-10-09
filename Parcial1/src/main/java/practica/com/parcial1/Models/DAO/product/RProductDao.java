@@ -48,6 +48,7 @@ public class RProductDao implements IProductDao {
     @Transactional
     @Override
     public void Drop() {
+        em.createQuery("delete from Inventory ").executeUpdate();
         em.createQuery("delete from Product ").executeUpdate();
     }
 

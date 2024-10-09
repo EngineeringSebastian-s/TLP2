@@ -39,8 +39,13 @@ public class Product implements Serializable {
     @NotNull(message = "El valor unitario no puede ser nulo")
     @Positive(message = "El valor unitario debe ser positivo")
     @Column(name = "unit_value")
-    private Long uniValue;
+    private Long unitValue;
+
+    @NotNull(message = "El stock no puede ser nulo")
+    @Positive(message = "El stock debe ser positivo")
+    @Column(name = "stock")
+    private Long stock;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Inventory> inventory;
+    private List<Detail> details;
 }

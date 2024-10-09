@@ -49,7 +49,6 @@ public class Purchase implements Serializable {
     @Column(name = "discount_total")
     private Long discountTotal;
 
-
     @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Detail> details = new ArrayList<>();
 }

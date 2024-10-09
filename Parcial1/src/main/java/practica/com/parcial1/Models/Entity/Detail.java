@@ -25,8 +25,8 @@ public class Detail {
     private Purchase purchase;
 
     @ManyToOne
-    @JoinColumn(name = "inventory_id", nullable = false)
-    private Inventory product;
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     @NotNull
     @Column(name = "amount")

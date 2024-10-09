@@ -120,7 +120,7 @@ public class ProductController {
                                 String.valueOf(product.getId()),
                                 product.getName(),
                                 product.getDescription(),
-                                String.valueOf(product.getUniValue())
+                                String.valueOf(product.getUnitValue())
                         )
                 );
             }

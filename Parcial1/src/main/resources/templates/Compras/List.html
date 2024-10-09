@@ -73,6 +73,8 @@
                        th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${sale.id} + ')'"
                        th:text="'Eliminar'"></a>
+                    <a class="btn btn-primary btn-xs" th:onclick="@{/Ventas/Download/{id}(id=${sale.id})}"
+                       th:text="'Descargar'"></a>
                 </td>
             </tr>
             </tbody>

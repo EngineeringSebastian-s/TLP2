@@ -15,11 +15,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/Home">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Clientes">Clientes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Administradores">Admins</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownUsers" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Usuarios
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownUsers">
+                        <li><a class="dropdown-item" href="/Clientes">Clientes</a></li>
+                        <li><a class="dropdown-item" href="/Administradores">Administradores</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/Productos">Productos</a>

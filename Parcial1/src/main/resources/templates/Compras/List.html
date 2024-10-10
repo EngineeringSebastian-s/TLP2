@@ -29,12 +29,12 @@
                 <td th:text="${sale.user.name} + ' ' + ${sale.user.lastname}"></td>
                 <td>
                     <div class="accordion">
-                        <div class="accordion-item" style="background: #0D0D0D;">
+                        <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         th:data-bs-target="'#collapse'+${sale.id}" aria-expanded="true"
-                                        th:aria-controls="'collapse'+${sale.id}" style="background: #fff;">
-                                    Ver mas ...
+                                        th:aria-controls="'collapse'+${sale.id}" style="background: rgba(0,0,0,0); width: 100%; text-align: center;">
+                                    Detalles
                                 </button>
                             </h2>
                             <div th:id="'collapse'+${sale.id}" class="accordion-collapse collapse">

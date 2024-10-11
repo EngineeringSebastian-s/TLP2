@@ -14,7 +14,7 @@
 
         <form method="post" th:action="@{/Clientes/{action}/{id}(id=${Client.id},action=${Action})}"
               th:object="${Client}">
-            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{id}" />
             <div class="form-group row mb-3">
                 <label class="col-sm-1 col-form-label">Nombre</label>
                 <div class="col-sm-6">
@@ -90,7 +90,7 @@
             Swal.fire({
                 position: 'bottom-end',
                 icon: 'error',
-                title: 'No se ha podido editar el registro.(' + ErrorDes + ')',
+                title: 'No se ha podido editar el registro.('+ErrorDes+')',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
@@ -100,11 +100,11 @@
                     toast.addEventListener('mouseleave', Swal.resumeTimer);
                 }
             });
-        } else if (ErrorCtr == "true") {
+        }else if (ErrorCtr == "true"){
             Swal.fire({
                 position: 'bottom-end',
                 icon: 'error',
-                title: 'No se ha podido crear el registro.(' + ErrorDes + ')',
+                title: 'No se ha podido crear el registro.('+ErrorDes+')',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,

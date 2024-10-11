@@ -14,14 +14,13 @@
 
         <form method="post" th:action="@{/Ventas/{action}/{id}(id=${Sale.id},action=${Action})}"
               th:object="${Sale}">
-            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{id}" />
             <div class="form-group row mb-3">
                 <label class="col-sm-1 col-form-label">Usuario</label>
                 <div class="col-sm-6">
                     <select class="form-control" th:errorclass="'border border-danger'" th:field="*{user.id}">
-                        <option selected th:value="*{user.id}" th:text="*{user.name + ' ' + user.lastname}"></option>
-                        <option th:each="auser : ${Users}" th:value="${auser.id}"
-                                th:text="${auser.name + ' ' + auser.lastname}"></option>
+                        <option selected th:value="*{user.id}" th:text="*{user.name + ' ' + user.lastname}" ></option>
+                        <option th:each="auser : ${Users}" th:value="${auser.id}" th:text="${auser.name + ' ' + auser.lastname}"></option>
                     </select>
                     <small class="form-text text-danger" th:errors="*{user}"
                            th:if="${#fields.hasErrors('user')}"></small>
@@ -80,7 +79,7 @@
             Swal.fire({
                 position: 'bottom-end',
                 icon: 'error',
-                title: 'No se ha podido editar el registro.(' + ErrorDes + ')',
+                title: 'No se ha podido editar el registro.('+ErrorDes+')',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
@@ -90,11 +89,11 @@
                     toast.addEventListener('mouseleave', Swal.resumeTimer);
                 }
             });
-        } else if (ErrorCtr == "true") {
+        }else if (ErrorCtr == "true"){
             Swal.fire({
                 position: 'bottom-end',
                 icon: 'error',
-                title: 'No se ha podido crear el registro.(' + ErrorDes + ')',
+                title: 'No se ha podido crear el registro.('+ErrorDes+')',
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,

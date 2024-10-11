@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import practica.com.parcial1.Models.DAO.purchase.IPurchaseDao;
+import practica.com.parcial1.Models.DAO.user.IUserDao;
 import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
@@ -20,6 +21,11 @@ import java.util.List;
 public class PurchaseController {
     @Autowired
     private IPurchaseDao purchaseDao;
+    private IUserDao userDao;
+
+    public PurchaseController(IUserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @GetMapping({"/",""})
     public String List(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt){
@@ -40,7 +46,10 @@ public class PurchaseController {
         if (purchase == null) {
             return "redirect:/Ventas";
         }
+
+        List<User> users = userDao.findAnotherClients(purchase.getUser().getId());
         model.addAttribute("Sale", purchase);
+        model.addAttribute("Users", users);
         model.addAttribute("Title", "Formulario de Ventas");
         model.addAttribute("TextButton", "Editar Venta");
         model.addAttribute("Action", "Edit");
@@ -51,6 +60,8 @@ public class PurchaseController {
     public String Edit(@Valid Purchase purchase, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("Sale", purchase);
+            List<User> users = userDao.findAnotherClients(purchase.getUser().getId());
+            model.addAttribute("Users", users);
             model.addAttribute("Title", "Formulario de Ventas");
             model.addAttribute("TextButton", "Editar Venta");
             model.addAttribute("Action", "Edit");

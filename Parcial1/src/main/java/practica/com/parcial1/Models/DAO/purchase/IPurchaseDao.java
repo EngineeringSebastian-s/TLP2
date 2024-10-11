@@ -5,15 +5,15 @@ import practica.com.parcial1.Models.Entity.Purchase;
 import java.util.List;
 
 public interface IPurchaseDao {
-    List<Purchase> findAll();
+    public List<Purchase> findAll();
 
-    List<Purchase> findAnother(Long id);
+    public List<Purchase> findAnother(Long id);
 
-    Purchase Save(Purchase purchase);
+    public void Save(Purchase purchase);
 
-    Purchase findOne (Long id);
+    public Purchase findOne (Long id);
 
-    void Delete(Long id);
+    public void Delete(Long id);
 
     public void Drop();
 }

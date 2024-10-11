@@ -53,7 +53,6 @@ public class RProductDao implements IProductDao {
                 throw new PersistenceException(e);
             }
         }
-
     }
 
     @Transactional(readOnly = true)

@@ -22,9 +22,8 @@
             <option selected th:value="*{purchase.id}" th:text="*{purchase.id}" ></option>
             <option th:each="apurchase : ${Purchases}" th:value="${apurchase.id}" th:text="${apurchase.id}"></option>
           </select>
-          <small class="form-text text-danger" th:errors="*{product}"
-                 th:if="${#fields.hasErrors('product')}"></small>
-
+          <small class="form-text text-danger" th:errors="*{purchase}"
+                 th:if="${#fields.hasErrors('purchase')}"></small>
         </div>
       </div>
       <div class="form-group row mb-3">

@@ -2,6 +2,7 @@ package practica.com.parcial1.Models.DAO.purchase;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import practica.com.parcial1.Models.Entity.Product;
@@ -32,16 +33,24 @@ public class RPurchaseDao implements IPurchaseDao {
 
     @Transactional
     @Override
-    public Purchase Save(Purchase purchase) {
+    public void Save(Purchase purchase) {
         if (purchase.getId() != null && purchase.getId() > 0) {
-            Purchase existingPurchase = em.find(Purchase.class, purchase.getId());
-            if (existingPurchase != null) {
-                purchase = em.merge(purchase);
+            try {
+                Purchase existingPurchase = em.find(Purchase.class, purchase.getId());
+                if (existingPurchase != null) {
+                    purchase.setDetails(existingPurchase.getDetails());
+                    em.merge(purchase);
+                }
+            } catch (Exception e) {
+                throw new PersistenceException(e);
             }
         } else {
-            em.persist(purchase);
+            try {
+                em.persist(purchase);
+            } catch (Exception e) {
+                throw new PersistenceException(e);
+            }
         }
-        return purchase;
     }
 
     @Transactional(readOnly = true)

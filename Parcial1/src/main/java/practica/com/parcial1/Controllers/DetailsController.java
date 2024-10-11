@@ -41,6 +41,44 @@ public class DetailsController {
         return "redirect:/Ventas?confirmDel=true";
     }
 
+    @GetMapping("/Create/")
+    public String Create(Model model) {
+
+        Detail detail = new Detail();
+
+        model.addAttribute("Detail", detail);
+        List<Product> products = productDao.findAnother(0L);
+        List<Purchase> purchases = purchaseDao.findAnother(0L);
+        model.addAttribute("Products", products);
+        model.addAttribute("Purchases", purchases);
+        model.addAttribute("Title", "Formulario de Detalles");
+        model.addAttribute("TextButton", "Crear Detalle");
+        model.addAttribute("Action", "Create");
+
+        return "/Detalles/Form";
+    }
+
+    @PostMapping("/Create/")
+    public String Save(@Valid Detail detail, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("Detail", detail);
+            List<Product> products = productDao.findAnother(0L);
+            List<Purchase> purchases = purchaseDao.findAnother(0L);
+            model.addAttribute("Products", products);
+            model.addAttribute("Purchases", purchases);
+            model.addAttribute("Title", "Formulario de Detalles");
+            model.addAttribute("TextButton", "Crear Detalle");
+            model.addAttribute("Action", "Create");
+            model.addAttribute("ErrorCtr", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
+            return "/Detalles/Form";
+        }
+
+        detailsDao.Save(detail);
+        return "redirect:/Ventas";
+    }
+
     @GetMapping("/Edit/{id}")
     public String Edit(@PathVariable Long id, Model model) {
         if (id <= 0 ) {

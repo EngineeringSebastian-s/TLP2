@@ -5,9 +5,11 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class RUserDao implements IUserDao {
@@ -20,6 +22,15 @@ public class RUserDao implements IUserDao {
     @Override
     public List<User> findAllClients() {
         return em.createQuery("from User where role='Cliente'").getResultList();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> findAnotherClients(Long id) {
+        List<User> clients = findAllClients();
+        return clients.stream()
+                .filter(user -> !user.getId().equals(id))
+                .collect(Collectors.toList());
     }
 
     @SuppressWarnings("unchecked")

@@ -8,6 +8,8 @@ import java.util.List;
 public interface IUserDao {
     public List<User> findAllClients();
 
+    public List<User> findAnotherClients(Long id);
+
     public List<User> findAllAdmins();
 
     public void Save(User user);

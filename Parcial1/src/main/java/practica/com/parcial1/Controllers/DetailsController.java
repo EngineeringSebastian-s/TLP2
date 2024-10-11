@@ -30,8 +30,8 @@ public class DetailsController {
 
 
     @GetMapping({"/{id_purchase}"})
-    public String List(@PathVariable Long id_purchase, Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt){
-        if(!detailsDao.findAllOnePurchase(id_purchase).isEmpty()) {
+    public String List(@PathVariable Long id_purchase, Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
+        if (!detailsDao.findAllOnePurchase(id_purchase).isEmpty()) {
             model.addAttribute("Title", "Detalles de Ventas");
             model.addAttribute("details", detailsDao.findAllOnePurchase(id_purchase));
             model.addAttribute("confirmDel", confirmDel);
@@ -81,7 +81,7 @@ public class DetailsController {
 
     @GetMapping("/Edit/{id}")
     public String Edit(@PathVariable Long id, Model model) {
-        if (id <= 0 ) {
+        if (id <= 0) {
             return "redirect:/Ventas";
         }
 
@@ -136,7 +136,7 @@ public class DetailsController {
             }
         }
 
-        return "redirect:/Detalles/"+purchaseId+"?confirmDel=true";
+        return "redirect:/Detalles/" + purchaseId + "?confirmDel=true";
     }
 
     @GetMapping("/Drop")

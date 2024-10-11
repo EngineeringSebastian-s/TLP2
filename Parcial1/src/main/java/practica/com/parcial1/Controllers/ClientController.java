@@ -118,11 +118,11 @@ public class ClientController {
             writer.println("Id,Name,Lastname,Email,CreateAt");
             for (User user : users) {
                 writer.println(String.join(",",
-                        String.valueOf(user.getId()),
-                        user.getName(),
-                        user.getLastname(),
-                        user.getEmail(),
-                        String.valueOf(user.getCreateAt())
+                                String.valueOf(user.getId()),
+                                user.getName(),
+                                user.getLastname(),
+                                user.getEmail(),
+                                String.valueOf(user.getCreateAt())
                         )
                 );
             }

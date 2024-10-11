@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import practica.com.parcial1.Models.DAO.purchase.IPurchaseDao;
 import practica.com.parcial1.Models.DAO.user.IUserDao;
-import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
 
@@ -27,8 +26,8 @@ public class PurchaseController {
         this.userDao = userDao;
     }
 
-    @GetMapping({"/",""})
-    public String List(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt){
+    @GetMapping({"/", ""})
+    public String List(Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
         model.addAttribute("Title", "Listado de Ventas");
         model.addAttribute("Sales", purchaseDao.findAll());
         model.addAttribute("confirmDel", confirmDel);
@@ -99,13 +98,13 @@ public class PurchaseController {
             writer.println("Id,Client,Products,Discount,SubTotal,Total,CreateAt");
             for (Purchase purchase : purchases) {
                 writer.println(String.join(",",
-                                String.valueOf(purchase.getId()),
-                                purchase.getUser().getName() + purchase.getUser().getLastname(),
-                                String.valueOf(purchase.getDetails().size()),
-                                String.valueOf(purchase.getDiscountTotal()),
-                                String.valueOf(purchase.getSubTotal()),
-                                String.valueOf(purchase.getTotal()),
-                                String.valueOf(purchase.getDate())));
+                        String.valueOf(purchase.getId()),
+                        purchase.getUser().getName() + purchase.getUser().getLastname(),
+                        String.valueOf(purchase.getDetails().size()),
+                        String.valueOf(purchase.getDiscountTotal()),
+                        String.valueOf(purchase.getSubTotal()),
+                        String.valueOf(purchase.getTotal()),
+                        String.valueOf(purchase.getDate())));
             }
         } catch (Exception e) {
             e.printStackTrace();

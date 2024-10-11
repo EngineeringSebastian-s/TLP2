@@ -11,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -71,7 +70,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Purchase> purchases;
 
-    public User(String name, String lastname, String email,String password, String role) {
+    public User(String name, String lastname, String email, String password, String role) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;

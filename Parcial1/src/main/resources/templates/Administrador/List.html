@@ -6,39 +6,39 @@
 
 <body>
 <div class="container-fluid text-light pl-5" style="background-color: #0D0D0D;min-height: 100vh;height:100%">
-  <!-- Incluir el navbar -->
-  <div th:replace="fragments/navbar :: navbar"></div>
-  <div class="container-fluid text-light p-5" style="background-color: #0D0D0D;">
-    <h1 class="text-light border border-opacity-10 border-bottom  border-0" th:text="${Title}"></h1>
-    <table class="table table-dark table-striped">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>
-        <th>Fecha</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="user:${Client}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.lastname}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.createAt}"></td>
-      </tr>
-      </tbody>
+    <!-- Incluir el navbar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-fluid text-light p-5" style="background-color: #0D0D0D;">
+        <h1 class="text-light border border-opacity-10 border-bottom  border-0" th:text="${Title}"></h1>
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user:${Client}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastname}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.createAt}"></td>
+            </tr>
+            </tbody>
 
-    </table>
-    <a class="btn btn-primary btn-xs" th:href="@{/Download}">Descargar</a>
-  </div>
-  <!-- Incluir el Footer -->
-  <div th:replace="fragments/footer :: footer"></div>
-  <script src="/js/jquery-3.7.1.slim.min.js"></script>
-  <script src="/js/sweetalert2@11.js"></script>
-  <script src="/js/popper.min.js"></script>
-  <script src="/js/bootstrap.bundle.min.js"></script>
+        </table>
+        <a class="btn btn-primary btn-xs" th:href="@{/Download}">Descargar</a>
+    </div>
+    <!-- Incluir el Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/jquery-3.7.1.slim.min.js"></script>
+    <script src="/js/sweetalert2@11.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </div>
 </body>
 </html>

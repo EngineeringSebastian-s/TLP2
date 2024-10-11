@@ -26,6 +26,7 @@ public class Purchase implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @NotNull(message = "Debes seleccionar un usuario")
     private User user;
 
     @Column(name = "create_at", updatable = false)

@@ -41,7 +41,10 @@ public class PurchaseController {
 
         Purchase purchase = new Purchase();
 
+        List<User> users = userDao.findAnotherClients(0L);
+
         model.addAttribute("Sale", purchase);
+        model.addAttribute("Users", users);
         model.addAttribute("Title", "Formulario de Compra");
         model.addAttribute("TextButton", "Hacer Compra");
         model.addAttribute("Action", "Create");
@@ -54,6 +57,8 @@ public class PurchaseController {
 
         if (result.hasErrors()) {
             model.addAttribute("Sale", purchase);
+            List<User> users = userDao.findAnotherClients(0L);
+            model.addAttribute("Users", users);
             model.addAttribute("Title", "Formulario de Compras");
             model.addAttribute("TextButton", "Hacer Compra");
             model.addAttribute("Action", "Create");

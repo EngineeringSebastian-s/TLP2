@@ -5,9 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import practica.com.parcial1.Models.Entity.Detail;
-import practica.com.parcial1.Models.Entity.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

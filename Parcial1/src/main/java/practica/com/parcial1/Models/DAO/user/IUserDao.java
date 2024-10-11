@@ -1,6 +1,5 @@
 package practica.com.parcial1.Models.DAO.user;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import practica.com.parcial1.Models.Entity.User;
 
 import java.util.List;

@@ -69,12 +69,4 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Purchase> purchases;
-
-    public User(String name, String lastname, String email, String password, String role) {
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
 }

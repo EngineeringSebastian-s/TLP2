@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import practica.com.parcial1.Models.DAO.purchase.IPurchaseDao;
 import practica.com.parcial1.Models.DAO.user.IUserDao;
+import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
 
@@ -33,6 +34,36 @@ public class PurchaseController {
         model.addAttribute("confirmDel", confirmDel);
         model.addAttribute("confirmEdt", confirmEdt);
         return "/Compras/List";
+    }
+
+    @GetMapping("/Create/")
+    public String Create(Model model) {
+
+        Purchase purchase = new Purchase();
+
+        model.addAttribute("Sale", purchase);
+        model.addAttribute("Title", "Formulario de Compra");
+        model.addAttribute("TextButton", "Hacer Compra");
+        model.addAttribute("Action", "Create");
+
+        return "/Compras/Form";
+    }
+
+    @PostMapping("/Create/")
+    public String Save(@Valid Purchase purchase, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("Sale", purchase);
+            model.addAttribute("Title", "Formulario de Compras");
+            model.addAttribute("TextButton", "Hacer Compra");
+            model.addAttribute("Action", "Create");
+            model.addAttribute("ErrorCtr", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
+            return "/Compras/Form";
+        }
+
+        purchaseDao.Save(purchase);
+        return "redirect:/Ventas";
     }
 
     @GetMapping("/Edit/{id}")

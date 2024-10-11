@@ -1,19 +1,19 @@
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('John', 'Doe', 'john.doe@example.com', 'Password123!', 'Cliente', '2023-12-28');
+VALUES ('John', 'Doe', 'john.doe@example.com', 'Password123!', 'Cliente', NOW());
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('Jane', 'Smith', 'jane.smith@example.com', 'Password123!', 'Administrador', '2023-12-28');
+VALUES ('Jane', 'Smith', 'jane.smith@example.com', 'Password123!', 'Administrador', NOW());
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('Alice', 'Johnson', 'alice.johnson@example.com', 'Password123!', 'Cliente', '2023-12-28');
+VALUES ('Alice', 'Johnson', 'alice.johnson@example.com', 'Password123!', 'Cliente', NOW());
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('Bob', 'Brown', 'bobi.brown@example.com', 'Password123!', 'Cliente', '2023-12-28');
+VALUES ('Bob', 'Brown', 'bobi.brown@example.com', 'Password123!', 'Cliente', NOW());
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('Alejo', 'Doe', 'alejon.doe@example.com', 'Password123!', 'Cliente', '2023-12-28');
+VALUES ('Alejo', 'Doe', 'alejon.doe@example.com', 'Password123!', 'Cliente', NOW());
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('Pedro', 'Smith', 'jper.smith@example.com', 'Password123!', 'Administrador', '2023-12-28');
+VALUES ('Pedro', 'Smith', 'jper.smith@example.com', 'Password123!', 'Administrador', NOW());
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('Juan', 'Johnson', 'juance.johnson@example.com', 'Password123!', 'Cliente', '2023-12-28');
+VALUES ('Juan', 'Johnson', 'juance.johnson@example.com', 'Password123!', 'Cliente', NOW());
 INSERT INTO usuarios (name, lastname, email, password, role, create_at)
-VALUES ('Charli', 'Brown', 'charh.brown@example.com', 'Password123!', 'Cliente', '2023-12-28');
+VALUES ('Charli', 'Brown', 'charh.brown@example.com', 'Password123!', 'Cliente', NOW());
 
 INSERT INTO productos (name, description, unit_value, stock)
 VALUES ('Producto 1', 'Descripción del producto 1', 1000, 20);

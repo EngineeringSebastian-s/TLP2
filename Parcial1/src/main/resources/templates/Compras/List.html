@@ -75,8 +75,8 @@
                        th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${sale.id} + ')'"
                        th:text="'Eliminar'"></a>
-                    <a class="btn btn-primary btn-xs" th:onclick="@{/Ventas/Download/{id}(id=${sale.id})}"
-                       th:text="'Descargar'"></a>
+                    <!--a class="btn btn-primary btn-xs" th:onclick="@{/Ventas/Download/{id}(id=${sale.id})}"
+                       th:text="'Descargar'"></a-->
                 </td>
             </tr>
             </tbody>
@@ -88,6 +88,7 @@
     </div>
     <p id="confirmDel" style="display: none" th:text="${confirmDel}"></p>
     <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"></p>
+    <p id="ErrorDes" style="display: none" th:text="${ErrorDes}"></p>
     <!-- Incluir el Footer -->
     <div th:replace="fragments/footer :: footer"></div>
     <script src="/js/jquery-3.7.1.slim.min.js"></script>

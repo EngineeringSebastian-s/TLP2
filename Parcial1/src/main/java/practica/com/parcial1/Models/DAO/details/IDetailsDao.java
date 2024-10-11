@@ -16,5 +16,5 @@ public interface IDetailsDao {
 
     public void Delete(Long id);
 
-    public void Drop();
+    public void DropDetailsOnePurchase(Long purchaseId);
 }

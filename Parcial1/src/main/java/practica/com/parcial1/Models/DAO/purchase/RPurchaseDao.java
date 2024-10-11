@@ -4,9 +4,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class RPurchaseDao implements IPurchaseDao {
@@ -16,9 +18,16 @@ public class RPurchaseDao implements IPurchaseDao {
     @Transactional(readOnly = true)
     @Override
     public List<Purchase> findAll() {
+        return em.createQuery("from Purchase", Purchase.class).getResultList();
+    }
 
-        List<Purchase> purchases = em.createQuery("from Purchase", Purchase.class).getResultList();
-        return purchases;
+    @Transactional(readOnly = true)
+    @Override
+    public List<Purchase> findAnother(Long id) {
+        List<Purchase> purchases = findAll();
+        return purchases.stream()
+                .filter(purchase -> !purchase.getId().equals(id))
+                .collect(Collectors.toList());
     }
 
     @Transactional

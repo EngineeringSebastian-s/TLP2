@@ -46,9 +46,10 @@
             </tbody>
 
         </table>
-        <a class="btn btn-success btn-xs" th:href="@{Detalles/Create/}">Agregar</a>
+        <a class="btn btn-success btn-xs" th:href="@{/Detalles/Create/{id}(id=${details[0].purchase.id})}">Agregar</a>
         <a class="btn btn-danger btn-xs" th:onclick="'confirmDeleteAll()'">Vaciar</a>
-        <a class="btn btn-primary btn-xs" th:href="@{Detalles/Download}">Descargar</a>
+        <a class="btn btn-primary btn-xs" th:href="@{/Detalles/Download/{id}(id=${details[0].purchase.id})}">Descargar</a>
+        <a class="btn btn-secondary btn-xs" th:href="@{/Ventas/}">Volver</a>
     </div>
     <p id="confirmDel" style="display: none" th:text="${confirmDel}"></p>
     <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"></p>

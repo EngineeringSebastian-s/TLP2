@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import practica.com.parcial1.Models.Entity.Detail;
+import practica.com.parcial1.Models.Entity.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,10 +59,13 @@ public class RDetailsDao implements IDetailsDao {
 
     @Transactional
     @Override
-    public void Drop() {
+    public void DropDetailsOnePurchase(Long purchaseId) {
         List<Detail> details = findAll();
         for (Detail detail : details) {
-            em.remove(detail);
+            if (detail.getPurchase().getId().equals(purchaseId)) {
+                em.remove(detail);
+            }
+
         }
     }
 }

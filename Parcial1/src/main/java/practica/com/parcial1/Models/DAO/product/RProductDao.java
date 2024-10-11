@@ -9,6 +9,7 @@ import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class RProductDao implements IProductDao {
@@ -21,6 +22,15 @@ public class RProductDao implements IProductDao {
     @Override
     public List<Product> findAll() {
         return em.createQuery("from Product").getResultList();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Product> findAnother(Long id) {
+        List<Product> products = findAll();
+        return products.stream()
+                .filter(product -> !product.getId().equals(id))
+                .collect(Collectors.toList());
     }
 
     @Transactional

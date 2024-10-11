@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Incluir el head -->
+<div th:replace="fragments/head :: head"></div>
+
+<body>
+<div class="container-fluid text-light pl-5" style="background-color: #0D0D0D;min-height: 100vh;height:100%">
+  <!-- Incluir el navbar -->
+  <div th:replace="fragments/navbar :: navbar"></div>
+  <div class="container-fluid text-light p-5" style="background-color: #0D0D0D;">
+
+    <h1 class="text-primary border border-success border-bottom  border-0" th:text="${Title}"></h1>
+
+    <form method="post" th:action="@{/Detalles/{action}/{id}(id=${Detail.id},action=${Action})}"
+          th:object="${Detail}">
+      <input type="hidden" th:field="*{id}" />
+      <div class="form-group row mb-3">
+        <label class="col-sm-1 col-form-label">Venta</label>
+        <div class="col-sm-6">
+          <select class="form-control" th:errorclass="'border border-danger'" th:field="*{purchase.id}">
+            <option selected th:value="*{purchase.id}" th:text="*{purchase.id}" ></option>
+            <option th:each="apurchase : ${Purchases}" th:value="${apurchase.id}" th:text="${apurchase.id}"></option>
+          </select>
+          <small class="form-text text-danger" th:errors="*{product}"
+                 th:if="${#fields.hasErrors('product')}"></small>
+
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label class="col-sm-1 col-form-label">Producto</label>
+        <div class="col-sm-6">
+          <select class="form-control" th:errorclass="'border border-danger'" th:field="*{product.id}">
+            <option selected th:value="*{product.id}" th:text="*{product.name}" ></option>
+            <option th:each="aproduct : ${Products}" th:value="${aproduct.id}" th:text="${aproduct.name}"></option>
+          </select>
+          <small class="form-text text-danger" th:errors="*{product}"
+                 th:if="${#fields.hasErrors('product')}"></small>
+
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label class="col-sm-1 col-form-label">Cantidad</label>
+        <div class="col-sm-6">
+          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{amount}"
+                 type="number"/>
+          <small class="form-text text-danger" th:errors="*{amount}"
+                 th:if="${#fields.hasErrors('amount')}">a</small>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label class="col-sm-1 col-form-label">Descuento</label>
+        <div class="col-sm-6">
+          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{discount}"
+                 type="number"/>
+          <small class="form-text text-danger" th:errors="*{discount}"
+                 th:if="${#fields.hasErrors('discount')}"></small>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label class="col-sm-1 col-form-label">Precio</label>
+        <div class="col-sm-6">
+          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{price}"
+                 type="number"/>
+          <small class="form-text text-danger" th:errors="*{price}"
+                 th:if="${#fields.hasErrors('price')}"></small>
+
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <div class="col-sm-6">
+          <input class="btn btn-primary" th:value="${TextButton}" type="submit"/>
+        </div>
+      </div>
+    </form>
+    <p id="ErrorEdt" style="display: none" th:text="${ErrorEdt}"></p>
+    <p id="ErrorCtr" style="display: none" th:text="${ErrorCtr}"></p>
+    <p id="ErrorDes" style="display: none" th:text="${ErrorDes}"></p>
+  </div>
+  <!-- Incluir el Footer -->
+  <div th:replace="fragments/footer :: footer"></div>
+  <script src="/js/jquery-3.7.1.slim.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/sweetalert2@11.js"></script>
+  <script>
+    let ErrorEdt = document.getElementById("ErrorEdt").textContent;
+    let ErrorCtr = document.getElementById("ErrorCtr").textContent;
+    let ErrorDes = document.getElementById("ErrorDes").textContent;
+
+    if (ErrorEdt == "true") {
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'error',
+        title: 'No se ha podido editar el registro.('+ErrorDes+')',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        toast: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      });
+    }else if (ErrorCtr == "true"){
+      Swal.fire({
+        position: 'bottom-end',
+        icon: 'error',
+        title: 'No se ha podido crear el registro.('+ErrorDes+')',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        toast: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      });
+    }
+
+
+  </script>
+</div>
+</body>
+
+</html>

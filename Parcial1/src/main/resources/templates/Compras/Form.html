@@ -19,7 +19,7 @@
                 <label class="col-sm-1 col-form-label">Usuario</label>
                 <div class="col-sm-6">
                     <select class="form-control" th:errorclass="'border border-danger'" th:field="*{user.id}">
-                        <option selected th:value="*{user.id}" th:text="*{user.name + ' ' + user.lastname}" ></option>
+                        <option selected th:if="*{user.id != null}" th:value="*{user.id}" th:text="*{user.name + ' ' + user.lastname}" ></option>
                         <option th:each="auser : ${Users}" th:value="${auser.id}" th:text="${auser.name + ' ' + auser.lastname}"></option>
                     </select>
                     <small class="form-text text-danger" th:errors="*{user}"
@@ -57,6 +57,7 @@
             <div class="form-group row mb-3">
                 <div class="col-sm-6">
                     <input class="btn btn-primary" th:value="${TextButton}" type="submit"/>
+                    <a class="btn btn-secondary btn-xs" th:href="@{/Ventas/}">Volver</a>
                 </div>
             </div>
         </form>

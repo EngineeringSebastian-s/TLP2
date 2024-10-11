@@ -83,10 +83,10 @@
             </tbody>
 
         </table>
-        <a class="btn btn-success btn-xs" th:href="@{Ventas/Create/}">Agregar</a>
+        <a class="btn btn-success btn-xs" th:href="@{/Ventas/Create/}">Agregar</a>
         <a class="btn btn-danger btn-xs" th:onclick="'confirmDeleteAll()'">Vaciar</a>
-        <a class="btn btn-primary btn-xs" th:href="@{Ventas/Download}">Descargar</a>
-        <a class="btn btn-info btn-xs" th:href="@{Detalles/Create/}">Agregar Detalle</a>
+        <a class="btn btn-primary btn-xs" th:href="@{/Ventas/Download}">Descargar</a>
+        <a class="btn btn-info btn-xs" th:href="@{/Detalles/Create/}">Agregar Detalle</a>
     </div>
     <p id="confirmDel" style="display: none" th:text="${confirmDel}"></p>
     <p id="confirmEdt" style="display: none" th:text="${confirmEdt}"></p>

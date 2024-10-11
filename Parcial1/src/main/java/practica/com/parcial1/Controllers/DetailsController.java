@@ -74,7 +74,6 @@ public class DetailsController {
             model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
             return "/Detalles/Form";
         }
-
         detailsDao.Save(detail);
         return "redirect:/Ventas";
     }

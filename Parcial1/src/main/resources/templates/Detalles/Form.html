@@ -60,7 +60,7 @@
         <label class="col-sm-1 col-form-label">Precio</label>
         <div class="col-sm-6">
           <input class="form-control" th:errorclass="'border border-danger'" th:field="*{price}"
-                 type="number"/>
+                 th:value="*{product.unitValue}" type="number"/>
           <small class="form-text text-danger" th:errors="*{price}"
                  th:if="${#fields.hasErrors('price')}"></small>
 
@@ -83,6 +83,7 @@
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/sweetalert2@11.js"></script>
+
   <script>
     let ErrorEdt = document.getElementById("ErrorEdt").textContent;
     let ErrorCtr = document.getElementById("ErrorCtr").textContent;

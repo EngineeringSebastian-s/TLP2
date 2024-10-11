@@ -6,17 +6,17 @@ import practica.com.parcial1.Models.Entity.User;
 import java.util.List;
 
 public interface IUserDao {
-    public List<User> findAllClients();
+    List<User> findAllClients();
 
-    public List<User> findAnotherClients(Long id);
+    List<User> findAnotherClients(Long id);
 
-    public List<User> findAllAdmins();
+    List<User> findAllAdmins();
 
-    public void Save(User user);
+    void Save(User user);
 
-    public User findOne(Long id);
+    User findOne(Long id);
 
-    public void Delete(Long id);
+    void Delete(Long id);
 
-    public void Drop();
+    void Drop();
 }

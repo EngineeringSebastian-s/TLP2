@@ -5,15 +5,15 @@ import practica.com.parcial1.Models.Entity.Product;
 import java.util.List;
 
 public interface IProductDao {
-    public List<Product> findAll();
+    List<Product> findAll();
 
-    public List<Product> findAnother(Long id);
+    List<Product> findAnother(Long id);
 
-    public void Save(Product product);
+    void Save(Product product);
 
-    public Product findOne(Long id);
+    Product findOne(Long id);
 
-    public void Delete(Long id);
+    void Delete(Long id);
 
-    public void Drop();
+    void Drop();
 }

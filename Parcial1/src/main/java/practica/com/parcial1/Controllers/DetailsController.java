@@ -20,8 +20,8 @@ import java.util.List;
 public class DetailsController {
     @Autowired
     private IDetailsDao detailsDao;
-    private IProductDao productDao;
-    private IPurchaseDao purchaseDao;
+    private final IProductDao productDao;
+    private final IPurchaseDao purchaseDao;
 
     public DetailsController(IProductDao productDao, IPurchaseDao purchaseDao) {
         this.productDao = productDao;

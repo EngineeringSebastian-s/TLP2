@@ -6,15 +6,15 @@ import practica.com.parcial1.Models.Entity.Product;
 import java.util.List;
 
 public interface IDetailsDao {
-    public List<Detail> findAll();
+    List<Detail> findAll();
 
-    public List<Detail> findAllOnePurchase(Long purchaseId);
+    List<Detail> findAllOnePurchase(Long purchaseId);
 
-    public void Save(Detail detail);
+    void Save(Detail detail);
 
-    public Detail findOne(Long id);
+    Detail findOne(Long id);
 
-    public void Delete(Long id);
+    void Delete(Long id);
 
-    public void DropDetailsOnePurchase(Long purchaseId);
+    void DropDetailsOnePurchase(Long purchaseId);
 }

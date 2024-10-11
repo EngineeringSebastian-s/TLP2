@@ -21,7 +21,7 @@ import java.util.List;
 public class PurchaseController {
     @Autowired
     private IPurchaseDao purchaseDao;
-    private IUserDao userDao;
+    private final IUserDao userDao;
 
     public PurchaseController(IUserDao userDao) {
         this.userDao = userDao;

@@ -61,7 +61,7 @@ public class ProductController {
     @GetMapping("/Edit/{id}")
     public String Edit(@PathVariable Long id, Model model) {
         if (id <= 0) {
-            return "redirect:/Clientes";
+            return "redirect:/Producto";
         }
 
         Product product = productoDao.findOne(id);

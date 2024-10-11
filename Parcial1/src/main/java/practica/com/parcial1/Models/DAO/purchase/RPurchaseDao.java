@@ -23,7 +23,7 @@ public class RPurchaseDao implements IPurchaseDao {
 
     @Transactional
     @Override
-    public Purchase save(Purchase purchase) {
+    public Purchase Save(Purchase purchase) {
         if (purchase.getId() != null && purchase.getId() > 0) {
             Purchase existingPurchase = em.find(Purchase.class, purchase.getId());
             if (existingPurchase != null) {

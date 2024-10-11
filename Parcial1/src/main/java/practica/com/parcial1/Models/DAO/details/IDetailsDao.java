@@ -8,6 +8,8 @@ import java.util.List;
 public interface IDetailsDao {
     public List<Detail> findAll();
 
+    public List<Detail> findAllOnePurchase(Long purchaseId);
+
     public void Save(Detail detail);
 
     public Detail findOne(Long id);

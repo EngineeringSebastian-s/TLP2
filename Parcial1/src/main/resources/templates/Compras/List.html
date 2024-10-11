@@ -69,6 +69,8 @@
                 <td th:text="${sale.total}"></td>
                 <td th:text="${sale.date}"></td>
                 <td>
+                    <a class="btn btn-info btn-xs" th:href="@{/Detalles/{id}(id=${sale.id})}"
+                       th:text="'Ver'"></a>
                     <a class="btn btn-success btn-xs" th:href="@{/Ventas/Edit/{id}(id=${sale.id})}"
                        th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-xs" th:onclick="'confirmDelete(' + ${sale.id} + ')'"

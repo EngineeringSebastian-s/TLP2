@@ -18,9 +18,24 @@ public class DetailsController {
     @GetMapping({"/{id}"})
     public String List(@PathVariable Long id, Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt){
         model.addAttribute("Title", "Detalles de Ventas");
-        model.addAttribute("details", detailsDao.findOne(id));
+        model.addAttribute("details", detailsDao.findAllOnePurchase(id));
         model.addAttribute("confirmDel", confirmDel);
         model.addAttribute("confirmEdt", confirmEdt);
         return "/Detalles/List";
+    }
+
+    @GetMapping("/Delete/{id}")
+    public String Delete(@PathVariable Long id) {
+
+        if (id > 0) {
+            detailsDao.Delete(id);
+        }
+        return "redirect:/Detalles?confirmDel=true";
+    }
+
+    @GetMapping("/Drop")
+    public String Drop() {
+        detailsDao.Drop();
+        return "redirect:/Productos?confirmDel=true";
     }
 }

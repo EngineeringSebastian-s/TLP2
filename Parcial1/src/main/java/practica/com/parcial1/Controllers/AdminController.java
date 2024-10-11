@@ -25,7 +25,7 @@ public class AdminController {
         model.addAttribute("Client", userDao.findAllAdmins());
         model.addAttribute("confirmDel", confirmDel);
         model.addAttribute("confirmEdt", confirmEdt);
-        return "/Administradores/List";
+        return "/Administrador/List";
     }
 
     @GetMapping("/Download")

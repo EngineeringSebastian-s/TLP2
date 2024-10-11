@@ -7,7 +7,7 @@ import java.util.List;
 public interface IPurchaseDao {
     List<Purchase> findAll();
 
-    Purchase save(Purchase purchase);
+    Purchase Save(Purchase purchase);
 
     Purchase findOne (Long id);
 

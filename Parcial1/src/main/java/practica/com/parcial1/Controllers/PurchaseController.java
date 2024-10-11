@@ -1,14 +1,14 @@
 package practica.com.parcial1.Controllers;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import practica.com.parcial1.Models.DAO.purchase.IPurchaseDao;
+import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
 
@@ -28,6 +28,39 @@ public class PurchaseController {
         model.addAttribute("confirmDel", confirmDel);
         model.addAttribute("confirmEdt", confirmEdt);
         return "/Compras/List";
+    }
+
+    @GetMapping("/Edit/{id}")
+    public String Edit(@PathVariable Long id, Model model) {
+        if (id <= 0) {
+            return "redirect:/Ventas";
+        }
+        Purchase purchase = purchaseDao.findOne(id);
+
+        if (purchase == null) {
+            return "redirect:/Ventas";
+        }
+        model.addAttribute("Sale", purchase);
+        model.addAttribute("Title", "Formulario de Ventas");
+        model.addAttribute("TextButton", "Editar Venta");
+        model.addAttribute("Action", "Edit");
+        return "/Compras/Form";
+    }
+
+    @PostMapping("/Edit/{id}")
+    public String Edit(@Valid Purchase purchase, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("Sale", purchase);
+            model.addAttribute("Title", "Formulario de Ventas");
+            model.addAttribute("TextButton", "Editar Venta");
+            model.addAttribute("Action", "Edit");
+            model.addAttribute("ErrorEdt", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
+            return "/Compras/Form";
+        }
+
+        purchaseDao.Save(purchase);
+        return "redirect:/Ventas";
     }
 
     @GetMapping("/Delete/{id}")

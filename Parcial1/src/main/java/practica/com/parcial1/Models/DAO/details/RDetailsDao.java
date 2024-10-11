@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import practica.com.parcial1.Models.Entity.Detail;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class RDetailsDao implements IDetailsDao {
@@ -19,6 +21,15 @@ public class RDetailsDao implements IDetailsDao {
     @Override
     public List<Detail> findAll() {
         return em.createQuery("from Detail").getResultList();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Detail> findAllOnePurchase(Long purchaseId) {
+        List<Detail> details = findAll();
+        return details.stream()
+                .filter(detail -> detail.getPurchase() != null && detail.getPurchase().getId().equals(purchaseId))
+                .collect(Collectors.toList());
     }
 
     @Transactional

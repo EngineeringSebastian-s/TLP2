@@ -28,22 +28,22 @@ INSERT INTO productos (name, description, unit_value, stock) VALUES ('Producto 1
 INSERT INTO productos (name, description, unit_value, stock) VALUES ('Producto 19', 'Descripción del producto 19', 14000, 6);
 INSERT INTO productos (name, description, unit_value, stock) VALUES ('Producto 20', 'Descripción del producto 20', 15000, 4);
 
-INSERT INTO compras (user_id, subtotal, total, discount_total) VALUES (1, 5000, 2000, 3000);
+INSERT INTO compras (user_id, subtotal, total, discount_total, create_at) VALUES (1, 5000, 2000, 3000,'2024-07-28');
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (1, 1, 2, 2000, 2000);
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (1, 3, 1, 3000, 1000);
 
-INSERT INTO compras (user_id, subtotal, total, discount_total) VALUES (3, 40000, 18000, 22000);
+INSERT INTO compras (user_id, subtotal, total, discount_total, create_at) VALUES (3, 40000, 18000, 22000,'2024-09-28');
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (2, 4, 6, 24000, 12000);
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (2, 7, 8, 16000, 10000);
 
-INSERT INTO compras (user_id, subtotal, total, discount_total) VALUES (7, 25000, 12000, 13000);
+INSERT INTO compras (user_id, subtotal, total, discount_total, create_at) VALUES (7, 25000, 12000, 13000,'2024-11-02');
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (3, 11, 2, 12000, 6000);
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (3, 13, 1, 8000, 4000);
 
-INSERT INTO compras (user_id, subtotal, total, discount_total) VALUES (4, 60000, 24000, 36000);
+INSERT INTO compras (user_id, subtotal, total, discount_total, create_at) VALUES (4, 60000, 24000, 36000,'2024-10-02');
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (4, 15, 4, 40000, 20000);
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (4, 18, 2, 26000, 16000);
 
-INSERT INTO compras (user_id, subtotal, total, discount_total) VALUES (5, 15000, 7000, 8000);
+INSERT INTO compras (user_id, subtotal, total, discount_total, create_at) VALUES (5, 15000, 7000, 8000,'2024-10-28');
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (5, 12, 1, 7000, 3000);
 INSERT INTO detalles (purchase_id, product_id, amount, price, discount) VALUES (5, 16, 1, 11000, 5000);

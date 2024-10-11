@@ -37,7 +37,7 @@
                 <label class="col-sm-1 col-form-label">Email</label>
                 <div class="col-sm-6">
                     <input class="form-control" th:errorclass="'border border-danger'" th:field="*{email}"
-                           type="text"/>
+                           type="email"/>
                     <small class="form-text text-danger" th:errors="*{email}"
                            th:if="${#fields.hasErrors('email')}"></small>
 
@@ -66,7 +66,9 @@
             <div class="form-group row mb-3">
                 <div class="col-sm-6">
                     <input class="btn btn-primary" th:value="${TextButton}" type="submit"/>
+                    <a class="btn btn-danger btn-xs" th:href="@{/Clientes}" th:text="'Cancelar'"></a>
                 </div>
+
             </div>
         </form>
         <p id="ErrorEdt" style="display: none" th:text="${ErrorEdt}"></p>

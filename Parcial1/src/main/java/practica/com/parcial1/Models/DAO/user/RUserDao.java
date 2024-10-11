@@ -2,6 +2,7 @@ package practica.com.parcial1.Models.DAO.user;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import practica.com.parcial1.Models.Entity.User;
@@ -31,13 +32,21 @@ public class RUserDao implements IUserDao {
     @Transactional
     @Override
     public void Save(User user) {
-
-        if (user.getId() != null && user.getId() > 0) {
-            em.merge(user);
-        } else {
-            em.persist(user);
+        try {
+            if (user.getId() != null && user.getId() > 0) {
+                User existingUser = em.find(User.class, user.getId());
+                if (existingUser != null) {
+                    // Mantener las compras existentes
+                    user.setPurchases(existingUser.getPurchases());
+                }
+                em.merge(user);
+            } else {
+                // Persistir un nuevo usuario
+                em.persist(user);
+            }
+        } catch (Exception e) {
+            throw new PersistenceException(e);
         }
-
     }
 
     @Transactional(readOnly = true)

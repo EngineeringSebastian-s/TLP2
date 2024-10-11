@@ -37,7 +37,7 @@
                 <label class="col-sm-1 col-form-label">Valor Unitario</label>
                 <div class="col-sm-6">
                     <input class="form-control" th:errorclass="'border border-danger'" th:field="*{unitValue}"
-                           type="text"/>
+                           type="number"/>
                     <small class="form-text text-danger" th:errors="*{unitValue}"
                            th:if="${#fields.hasErrors('unitValue')}"></small>
 
@@ -47,7 +47,7 @@
                 <label class="col-sm-1 col-form-label">Stock</label>
                 <div class="col-sm-6">
                     <input class="form-control" th:errorclass="'border border-danger'" th:field="*{stock}"
-                           type="text"/>
+                           type="number"/>
                     <small class="form-text text-danger" th:errors="*{stock}"
                            th:if="${#fields.hasErrors('stock')}"></small>
 

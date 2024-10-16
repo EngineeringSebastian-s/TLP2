@@ -13,6 +13,7 @@ import practica.com.parcial1.Models.Entity.Detail;
 import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -77,6 +78,25 @@ public class DetailsController {
         detailsDao.Save(detail);
         return "redirect:/Ventas";
     }
+
+    @GetMapping("/Create/{id_purchase}")
+    public String SaveOnePurchase(@PathVariable Long id_purchase,Model model) {
+
+        Detail detail = new Detail();
+
+        model.addAttribute("Detail", detail);
+        List<Product> products = productDao.findAnother(0L);
+        List<Purchase> purchases = new ArrayList<Purchase>();
+        purchases.add(purchaseDao.findOne(id_purchase));
+        model.addAttribute("Products", products);
+        model.addAttribute("Purchases", purchases);
+        model.addAttribute("Title", "Formulario de Detalles");
+        model.addAttribute("TextButton", "Crear Detalle");
+        model.addAttribute("Action", "Create");
+
+        return "/Detalles/Form";
+    }
+
 
     @GetMapping("/Edit/{id}")
     public String Edit(@PathVariable Long id, Model model) {

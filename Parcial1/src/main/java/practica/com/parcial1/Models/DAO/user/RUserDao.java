@@ -5,7 +5,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
 
 import java.util.List;
@@ -85,11 +84,10 @@ public class RUserDao implements IUserDao {
     @Override
     public void Drop() {
         List<User> clients = findAllClients();
-        for(User user : clients) {
+        for (User user : clients) {
             em.remove(user);
         }
     }
-
 
 
 }

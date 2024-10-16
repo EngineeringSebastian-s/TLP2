@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import practica.com.parcial1.Models.DAO.product.IProductDao;
 import practica.com.parcial1.Models.DAO.purchase.IPurchaseDao;
 import practica.com.parcial1.Models.DAO.user.IUserDao;
-import practica.com.parcial1.Models.Entity.Product;
 import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
 
@@ -40,7 +39,7 @@ public class PurchaseController {
     }
 
     @GetMapping("/History/{id}")
-    public String History(@PathVariable Long id,Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
+    public String History(@PathVariable Long id, Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
         model.addAttribute("Title", "Listado de Ventas");
         model.addAttribute("Sales", purchaseDao.findOne(id));
         model.addAttribute("confirmDel", confirmDel);

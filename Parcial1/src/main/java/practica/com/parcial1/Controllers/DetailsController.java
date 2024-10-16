@@ -80,7 +80,7 @@ public class DetailsController {
     }
 
     @GetMapping("/Create/{id_purchase}")
-    public String SaveOnePurchase(@PathVariable Long id_purchase,Model model) {
+    public String SaveOnePurchase(@PathVariable Long id_purchase, Model model) {
 
         Detail detail = new Detail();
 

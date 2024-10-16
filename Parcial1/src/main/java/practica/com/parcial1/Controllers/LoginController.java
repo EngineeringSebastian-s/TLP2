@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/Login")
 public class LoginController {
-    @GetMapping({"", "/", })
+    @GetMapping({"", "/",})
     public String index(Model model) {
         model.addAttribute("Title", "Login E-Commercer");
         return "Login";

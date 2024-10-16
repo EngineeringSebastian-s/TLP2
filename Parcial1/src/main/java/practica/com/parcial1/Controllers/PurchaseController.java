@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import practica.com.parcial1.Models.DAO.details.IDetailsDao;
 import practica.com.parcial1.Models.DAO.product.IProductDao;
 import practica.com.parcial1.Models.DAO.purchase.IPurchaseDao;
 import practica.com.parcial1.Models.DAO.user.IUserDao;
+import practica.com.parcial1.Models.Entity.Detail;
 import practica.com.parcial1.Models.Entity.Purchase;
 import practica.com.parcial1.Models.Entity.User;
 
@@ -23,10 +25,12 @@ public class PurchaseController {
     private IPurchaseDao purchaseDao;
     private final IUserDao userDao;
     private final IProductDao productDao;
+    private final IDetailsDao detailsDao;
 
-    public PurchaseController(IUserDao userDao, IProductDao productDao) {
+    public PurchaseController(IUserDao userDao, IProductDao productDao, IDetailsDao detailsDao) {
         this.userDao = userDao;
         this.productDao = productDao;
+        this.detailsDao = detailsDao;
     }
 
     @GetMapping({"/", ""})
@@ -130,8 +134,10 @@ public class PurchaseController {
         }
 
         List<User> users = userDao.findAnotherClients(purchase.getUser().getId());
+        List<Detail> details = detailsDao.findAllOnePurchase(purchase.getId());
         model.addAttribute("Sale", purchase);
         model.addAttribute("Users", users);
+        model.addAttribute("Details", details);
         model.addAttribute("Title", "Formulario de Ventas");
         model.addAttribute("TextButton", "Editar Venta");
         model.addAttribute("Action", "Edit");

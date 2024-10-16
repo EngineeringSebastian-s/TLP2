@@ -36,6 +36,15 @@ public class PurchaseController {
         return "/Compras/List";
     }
 
+    @GetMapping("/History/{id}")
+    public String History(@PathVariable Long id,Model model, @RequestParam(required = false) boolean confirmDel, @RequestParam(required = false) boolean confirmEdt) {
+        model.addAttribute("Title", "Listado de Ventas");
+        model.addAttribute("Sales", purchaseDao.findOne(id));
+        model.addAttribute("confirmDel", confirmDel);
+        model.addAttribute("confirmEdt", confirmEdt);
+        return "/Compras/History";
+    }
+
     @GetMapping("/Create/")
     public String Create(Model model) {
 

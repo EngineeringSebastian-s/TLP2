@@ -19,4 +19,6 @@ public interface IUserDao {
     void Delete(Long id);
 
     void Drop();
+
+    User findByEmail(String email);
 }

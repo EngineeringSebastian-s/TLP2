@@ -66,6 +66,12 @@ public class RUserDao implements IUserDao {
         return em.find(User.class, id);
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public User findByEmail(String mail) {
+        return em.find(User.class, mail);
+    }
+
     @Transactional
     @Override
     public void Delete(Long id) {
@@ -83,6 +89,8 @@ public class RUserDao implements IUserDao {
             em.remove(user);
         }
     }
+
+
 
 }
 

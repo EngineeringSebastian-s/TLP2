@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0D0D0D;" th:fragment="navbar-admin">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img alt="Logo" class="d-inline-block align-text-top" height="50" src="/img/Spring_Boot.svg.png" width="50">
+        </a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin">Tablero</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownUsers" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Usuarios
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownUsers">
+                        <li><a class="dropdown-item" href="/Clientes">Clientes</a></li>
+                        <li><a class="dropdown-item" href="/Administradores">Administradores</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownInventory" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Inventario
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownInventory">
+                        <li><a class="nav-link" href="/Productos">Productos</a></li>
+                        <li><a class="nav-link" href="/Ventas">Ventas</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center m-3">
+                <img src="https://github.com/mdo.png" alt="Usuario" width="32" height="32" class="rounded-circle me-2">
+                <div class="dropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/">Cerar Sesión</a></li>
+                    </ul>
+                    <a class="d-block link-body-emphasis text-decoration-none dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Nombre Usuario
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

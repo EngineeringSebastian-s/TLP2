@@ -8,7 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @GetMapping({"", "/", "/Home"})
     public String index(Model model) {
-        model.addAttribute("Title", "Home Parcial#1");
+        model.addAttribute("Title", "Home E-Commerce");
         return "Index";
+    }
+
+    @GetMapping("/App")
+    public String indexClient(Model model) {
+        model.addAttribute("Title", "Dashboard E-Commerce");
+        return "/Cliente/Index";
+    }
+
+    @GetMapping("/Admin")
+    public String indexAdmin(Model model) {
+        model.addAttribute("Title", "Admin E-Commerce");
+        return "/Administrador/Index";
     }
 }

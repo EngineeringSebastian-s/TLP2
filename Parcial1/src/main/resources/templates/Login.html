@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Incluir el head -->
+<div th:replace="fragments/head :: head"></div>
+<body style="background-color: #0D0D0D;">
+<div class="container-fluid text-light pl-5" style="background-color: #0D0D0D;min-height: 100vh;height: 100%">
+    <div class="d-flex justify-content-center align-items-center" style="height: 90vh">
+        <main class="form-signin text-light" style="max-width: 400px; padding: 15px;">
+            <div class="text-center">
+                <img class="mb-4"
+                     src="/img/spring-boot-logo.png"
+                     alt="" width="100">
+                <h1 class="h3 mb-4 fw-normal">Inicia Sesión</h1>
+            </div>
+            <form name="registro" id="registro" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required>
+                </div>
+                <div class="mb-3">
+                    <a class="w-100 btn btn-lg btn-primary" href="/App">Cliente</a>
+                </div>
+                <div class="mb-3">
+                    <a class="w-100 btn btn-lg btn-dark" href="/Admin">Admin</a>
+                </div>
+
+            </form>
+        </main>
+    </div>
+    <!-- Incluir el Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/jquery-3.7.1.slim.min.js"></script>
+    <script src="/js/sweetalert2@11.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</div>
+</body>
+</html>

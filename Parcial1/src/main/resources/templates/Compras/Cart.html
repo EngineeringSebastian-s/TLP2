@@ -7,63 +7,51 @@
 <body>
 <div class="container-fluid text-light pl-5" style="background-color: #0D0D0D;min-height: 100vh;height:100%">
   <!-- Incluir el navbar -->
-  <div th:replace="fragments/admin/navbar :: navbar-admin"></div>
+  <div th:replace="fragments/navbar :: navbar"></div>
   <div class="container-fluid text-light p-5" style="background-color: #0D0D0D;">
 
     <h1 class="text-primary border border-success border-bottom  border-0" th:text="${Title}"></h1>
 
-    <form method="post" th:action="@{/Detalles/{action}/{id}(id=${Detail.id},action=${Action})}"
-          th:object="${Detail}">
+    <form method="post" th:action="@{/Ventas/{action}/{id}(id=${Sale.id},action=${Action})}"
+          th:object="${Sale}">
       <input type="hidden" th:field="*{id}" />
       <div class="form-group row mb-3">
-        <label class="col-sm-1 col-form-label">Venta</label>
+        <label class="col-sm-1 col-form-label">Usuario</label>
         <div class="col-sm-6">
-          <select class="form-control" th:errorclass="'border border-danger'" th:field="*{purchase.id}">
-            <option selected th:value="*{purchase.id}" th:text="*{purchase.id}" ></option>
-            <option th:each="apurchase : ${Purchases}" th:value="${apurchase.id}" th:text="${apurchase.id}"></option>
+          <select class="form-control" th:errorclass="'border border-danger'" th:field="*{user.id}">
+            <option selected th:if="*{user.id != null}" th:value="*{user.id}" th:text="*{user.name + ' ' + user.lastname}" ></option>
+            <option th:each="auser : ${Users}" th:value="${auser.id}" th:text="${auser.name + ' ' + auser.lastname}"></option>
           </select>
-          <small class="form-text text-danger" th:errors="*{purchase}"
-                 th:if="${#fields.hasErrors('purchase')}"></small>
-        </div>
-      </div>
-      <div class="form-group row mb-3">
-        <label class="col-sm-1 col-form-label">Producto</label>
-        <div class="col-sm-6">
-          <select class="form-control" th:errorclass="'border border-danger'" th:field="*{product.id}">
-            <option selected th:value="*{product.id}" th:text="*{product.name}" ></option>
-            <option th:each="aproduct : ${Products}" th:value="${aproduct.id}" th:text="${aproduct.name}"></option>
-          </select>
-          <small class="form-text text-danger" th:errors="*{product}"
-                 th:if="${#fields.hasErrors('product')}"></small>
+          <small class="form-text text-danger" th:errors="*{user}"
+                 th:if="${#fields.hasErrors('user')}"></small>
 
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label class="col-sm-1 col-form-label">Cantidad</label>
+        <label class="col-sm-1 col-form-label">SubTotal</label>
         <div class="col-sm-6">
-          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{amount}"
+          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{subTotal}"
                  type="number"/>
-          <small class="form-text text-danger" th:errors="*{amount}"
-                 th:if="${#fields.hasErrors('amount')}">a</small>
+          <small class="form-text text-danger" th:errors="*{subTotal}"
+                 th:if="${#fields.hasErrors('subTotal')}">a</small>
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label class="col-sm-1 col-form-label">Descuento</label>
+        <label class="col-sm-1 col-form-label">Descuento Total</label>
         <div class="col-sm-6">
-          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{discount}"
+          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{discountTotal}"
                  type="number"/>
-          <small class="form-text text-danger" th:errors="*{discount}"
-                 th:if="${#fields.hasErrors('discount')}"></small>
+          <small class="form-text text-danger" th:errors="*{discountTotal}"
+                 th:if="${#fields.hasErrors('discountTotal')}">a</small>
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label class="col-sm-1 col-form-label">Precio</label>
+        <label class="col-sm-1 col-form-label">Total</label>
         <div class="col-sm-6">
-          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{price}"
-                 th:value="*{product.unitValue}" type="number"/>
-          <small class="form-text text-danger" th:errors="*{price}"
-                 th:if="${#fields.hasErrors('price')}"></small>
-
+          <input class="form-control" th:errorclass="'border border-danger'" th:field="*{total}"
+                 type="number"/>
+          <small class="form-text text-danger" th:errors="*{total}"
+                 th:if="${#fields.hasErrors('total')}">a</small>
         </div>
       </div>
       <div class="form-group row mb-3">
@@ -83,7 +71,6 @@
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/sweetalert2@11.js"></script>
-
   <script>
     let ErrorEdt = document.getElementById("ErrorEdt").textContent;
     let ErrorCtr = document.getElementById("ErrorCtr").textContent;
@@ -118,8 +105,6 @@
         }
       });
     }
-
-
   </script>
 </div>
 </body>

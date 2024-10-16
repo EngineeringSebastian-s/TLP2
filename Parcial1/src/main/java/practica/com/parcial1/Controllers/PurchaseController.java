@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import practica.com.parcial1.Models.DAO.product.IProductDao;
 import practica.com.parcial1.Models.DAO.purchase.IPurchaseDao;
 import practica.com.parcial1.Models.DAO.user.IUserDao;
 import practica.com.parcial1.Models.Entity.Product;
@@ -22,9 +23,11 @@ public class PurchaseController {
     @Autowired
     private IPurchaseDao purchaseDao;
     private final IUserDao userDao;
+    private final IProductDao productDao;
 
-    public PurchaseController(IUserDao userDao) {
+    public PurchaseController(IUserDao userDao, IProductDao productDao) {
         this.userDao = userDao;
+        this.productDao = productDao;
     }
 
     @GetMapping({"/", ""})
@@ -54,6 +57,7 @@ public class PurchaseController {
 
         model.addAttribute("Sale", purchase);
         model.addAttribute("Users", users);
+        model.addAttribute("Products", productDao.findAll());
         model.addAttribute("Title", "Formulario de Compra");
         model.addAttribute("TextButton", "Hacer Compra");
         model.addAttribute("Action", "Create");
@@ -78,6 +82,41 @@ public class PurchaseController {
 
         purchaseDao.Save(purchase);
         return "redirect:/Ventas";
+    }
+
+    @GetMapping("/Buy/")
+    public String Buy(Model model) {
+
+        Purchase purchase = new Purchase();
+
+        List<User> users = userDao.findAnotherClients(0L);
+
+        model.addAttribute("Sale", purchase);
+        model.addAttribute("Users", users);
+        model.addAttribute("Title", "Formulario de Compra");
+        model.addAttribute("TextButton", "Hacer Compra");
+        model.addAttribute("Action", "Create");
+
+        return "/Compras/Cart";
+    }
+
+    @PostMapping("/Buy/")
+    public String Buy(@Valid Purchase purchase, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("Sale", purchase);
+            List<User> users = userDao.findAnotherClients(0L);
+            model.addAttribute("Users", users);
+            model.addAttribute("Title", "Formulario de Compras");
+            model.addAttribute("TextButton", "Hacer Compra");
+            model.addAttribute("Action", "Create");
+            model.addAttribute("ErrorCtr", "true");
+            model.addAttribute("ErrorDes", result.getAllErrors().get(0).getDefaultMessage());
+            return "/Compras/Cart";
+        }
+
+        purchaseDao.Save(purchase);
+        return "redirect:/Ventas/History/3";
     }
 
     @GetMapping("/Edit/{id}")

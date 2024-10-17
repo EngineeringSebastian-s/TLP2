@@ -33,7 +33,7 @@
                 <label class="col-sm-1 col-form-label">SubTotal</label>
                 <div class="col-sm-6">
                     <input class="form-control" th:errorclass="'border border-danger'" th:field="*{subTotal}"
-                           type="number"/>
+                           type="number" readonly />
                     <small class="form-text text-danger" th:errors="*{subTotal}"
                            th:if="${#fields.hasErrors('subTotal')}">a</small>
                 </div>
@@ -51,7 +51,7 @@
                 <label class="col-sm-1 col-form-label">Total</label>
                 <div class="col-sm-6">
                     <input class="form-control" th:errorclass="'border border-danger'" th:field="*{total}"
-                           type="number"/>
+                           type="number" readonly />
                     <small class="form-text text-danger" th:errors="*{total}"
                            th:if="${#fields.hasErrors('total')}">a</small>
                 </div>

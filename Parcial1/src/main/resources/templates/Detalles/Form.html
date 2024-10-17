@@ -63,7 +63,7 @@
                 <label class="col-sm-1 col-form-label">Precio</label>
                 <div class="col-sm-6">
                     <input class="form-control" th:errorclass="'border border-danger'" th:field="*{price}"
-                           th:value="*{product.unitValue}" type="number"/>
+                           th:value="*{product.unitValue}" type="number" readonly/>
                     <small class="form-text text-danger" th:errors="*{price}"
                            th:if="${#fields.hasErrors('price')}"></small>
 

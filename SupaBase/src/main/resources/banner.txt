@@ -1,0 +1,12 @@
+ ,---.                         ,--.
+'   .-' ,--.,--. ,---.  ,--,--.|  |-. ,--,--. ,---. ,---.
+`.  `-. |  ||  || .-. |' ,-.  || .-. ' ,-.  |(  .-'| .-. :
+.-'    |'  ''  '| '-' '\ '-'  || `-' \ '-'  |.-'  `)   --.
+`-----'  `----' |  |-'  `--`--' `---' `--`--'`----' `----'
+                `--'
+Author: ${application.author}
+Application: ${application.title} ${application.version}
+Technologies Used:
+ - Spring Boot (Java 17)
+ - PostgreSQL
+Powered by Spring Boot ${spring-boot.version}

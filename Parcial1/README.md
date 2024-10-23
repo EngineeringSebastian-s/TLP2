@@ -1,7 +1,3 @@
-Aquí tienes una documentación básica para establecer las tareas faltantes en tu proyecto. Esta documentación incluye la lógica de cálculo de descuentos, la validación de precios, la implementación de un carrito de compras con diseño en CSS Grid o Flexbox, y la actualización dinámica del subtotal, total y descuento.
-
----
-
 # Documentación de Tareas Faltantes
 
 ## 1. Lógica de Cálculo de Descuento Total
